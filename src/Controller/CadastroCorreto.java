@@ -3,6 +3,7 @@ package Controller;
 
 import DAO.ConexaoBancoDados;
 import DAO.InvestidorConectado;
+import Model.Carteira;
 import Model.Investidor;
 import View.Cadastro;
 import java.sql.Connection;
@@ -39,7 +40,15 @@ public class CadastroCorreto {
         return;
     }
     
-    Investidor investidor = new Investidor(nome, idade, cpf, senha);
+    double saldoInicialReal = 0.0; 
+    double saldoInicialBitcoin = 0.0; 
+    double saldoInicialEthereum = 0.0; 
+    double saldoInicialRipple = 0.0; 
+    
+    Carteira carteira = new Carteira(saldoInicialReal, saldoInicialBitcoin, saldoInicialEthereum, saldoInicialRipple);
+    carteira.atualizarCotacoes();
+    
+    Investidor investidor = new Investidor(nome, idade, cpf, senha, carteira);
     ConexaoBancoDados conectar = new ConexaoBancoDados();
     
     try {

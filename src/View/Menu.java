@@ -203,6 +203,11 @@ public class Menu extends javax.swing.JFrame {
         lbl5.setText("5.");
 
         btComprarCripto.setText("Comprar criptomoedas");
+        btComprarCripto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btComprarCriptoActionPerformed(evt);
+            }
+        });
 
         lbl6.setText("6.");
 
@@ -303,6 +308,10 @@ public class Menu extends javax.swing.JFrame {
     private void btConsultarExtratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConsultarExtratoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btConsultarExtratoActionPerformed
+
+    private void btComprarCriptoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComprarCriptoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btComprarCriptoActionPerformed
 
     /**
      * @param args the command line arguments

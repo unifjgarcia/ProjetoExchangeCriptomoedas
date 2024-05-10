@@ -27,7 +27,7 @@ public class LoginSucesso {
 
     public void LoginInvestidor(){
         Investidor investidor = new Investidor(null,null, view.getTxtCPF().getText(),
-                                                          view.getTxtSenha().getText());
+                                                          view.getTxtSenha().getText(), null);
         ConexaoBancoDados conectar = new ConexaoBancoDados();
         try{
             Connection conexao = conectar.getConnection();
