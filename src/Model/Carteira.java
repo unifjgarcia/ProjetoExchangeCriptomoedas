@@ -15,12 +15,12 @@ public class Carteira {
     private Ethereum ethereum;
     private Ripple ripple;
 
-    public Carteira(String investidorId ,double saldoInicialReal, double saldoInicialBitcoin, double saldoInicialEthereum, double saldoInicialRipple) {
+    public Carteira(String investidorId ,double saldoReal, double saldoBitcoin, double saldoEthereum, double saldoRipple) {
         this.investidorId = investidorId;
-        this.real = new Real(saldoInicialReal);
-        this.bitcoin = new Bitcoin(saldoInicialBitcoin);
-        this.ethereum = new Ethereum(saldoInicialEthereum);
-        this.ripple = new Ripple(saldoInicialRipple);
+        this.real = new Real(saldoReal);
+        this.bitcoin = new Bitcoin(saldoBitcoin);
+        this.ethereum = new Ethereum(saldoEthereum);
+        this.ripple = new Ripple(saldoRipple);
     }
     
     public String getInvestidorId() {
@@ -31,7 +31,7 @@ public class Carteira {
         return real;
     }
 
-    public void setReal(Real real) {
+    public void setReal(double saldoReal) {
         this.real = real;
     }
 
@@ -39,7 +39,7 @@ public class Carteira {
         return bitcoin;
     }
 
-    public void setBitcoin(Bitcoin bitcoin) {
+    public void setBitcoin(double saldoBitcoin) {
         this.bitcoin = bitcoin;
     }
 
@@ -47,7 +47,7 @@ public class Carteira {
         return ethereum;
     }
 
-    public void setEthereum(Ethereum ethereum) {
+    public void setEthereum(double saldoEthereum) {
         this.ethereum = ethereum;
     }
 
@@ -55,7 +55,7 @@ public class Carteira {
         return ripple;
     }
 
-    public void setRipple(Ripple ripple) {
+    public void setRipple(double saldoRipple) {
         this.ripple = ripple;
     }
     

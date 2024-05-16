@@ -179,6 +179,7 @@ public class Menu extends javax.swing.JFrame {
         btAtualizarCotacao = new javax.swing.JButton();
         lbl8 = new javax.swing.JLabel();
         btSair = new javax.swing.JButton();
+        lblMenu = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -203,10 +204,20 @@ public class Menu extends javax.swing.JFrame {
         lbl3.setText("3.");
 
         btDepositar.setText("Depositar ");
+        btDepositar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btDepositarActionPerformed(evt);
+            }
+        });
 
         lbl4.setText("4.");
 
         btSacar.setText("Sacar");
+        btSacar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSacarActionPerformed(evt);
+            }
+        });
 
         lbl5.setText("5.");
 
@@ -220,6 +231,11 @@ public class Menu extends javax.swing.JFrame {
         lbl6.setText("6.");
 
         btVenderCripto.setText("Vender criptomoedas");
+        btVenderCripto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btVenderCriptoActionPerformed(evt);
+            }
+        });
 
         lbl7.setText("7.");
 
@@ -229,6 +245,9 @@ public class Menu extends javax.swing.JFrame {
 
         btSair.setText("Sair");
 
+        lblMenu.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblMenu.setText("Bem-Vindo ao Menu do Investidor");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -237,6 +256,22 @@ public class Menu extends javax.swing.JFrame {
                 .addGap(209, 209, 209)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbl7)
+                            .addComponent(lbl8))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btAtualizarCotacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btSair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbl6)
+                        .addGap(18, 18, 18)
+                        .addComponent(btVenderCripto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbl5)
+                        .addGap(18, 18, 18)
+                        .addComponent(btComprarCripto, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(lbl2)
                         .addGap(18, 18, 18)
                         .addComponent(btConsultarExtrato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -244,38 +279,26 @@ public class Menu extends javax.swing.JFrame {
                         .addComponent(lbl4)
                         .addGap(18, 18, 18)
                         .addComponent(btSacar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(lbl1)
-                            .addGap(18, 18, 18)
-                            .addComponent(btConsultarSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbl3)
-                            .addGap(18, 18, 18)
-                            .addComponent(btDepositar, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(lbl7)
-                            .addGap(18, 18, 18)
-                            .addComponent(btAtualizarCotacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(lbl8)
-                            .addGap(18, 18, 18)
-                            .addComponent(btSair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(lbl6)
-                            .addGap(18, 18, 18)
-                            .addComponent(btVenderCripto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(lbl5)
-                            .addGap(18, 18, 18)
-                            .addComponent(btComprarCripto))))
+                            .addComponent(lbl1))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btConsultarSaldo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btDepositar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(227, 227, 227))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblMenu)
+                .addGap(177, 177, 177))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(134, 134, 134)
+                .addContainerGap()
+                .addComponent(lblMenu)
+                .addGap(105, 105, 105)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btConsultarSaldo)
                     .addComponent(lbl1))
@@ -307,7 +330,7 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btSair)
                     .addComponent(lbl8))
-                .addContainerGap(182, Short.MAX_VALUE))
+                .addContainerGap(173, Short.MAX_VALUE))
         );
 
         pack();
@@ -318,13 +341,29 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btConsultarExtratoActionPerformed
 
     private void btComprarCriptoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComprarCriptoActionPerformed
-        // TODO add your handling code here:
+        SenhaCompraCripto janelaSenha = new SenhaCompraCripto();
+        janelaSenha.setVisible(true);
     }//GEN-LAST:event_btComprarCriptoActionPerformed
 
     private void btConsultarSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConsultarSaldoActionPerformed
         Saldo janelaSaldo = new Saldo();
         janelaSaldo.setVisible(true);
     }//GEN-LAST:event_btConsultarSaldoActionPerformed
+
+    private void btDepositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDepositarActionPerformed
+        Deposito janelaDeposito = new Deposito();
+        janelaDeposito.setVisible(true);
+    }//GEN-LAST:event_btDepositarActionPerformed
+
+    private void btSacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSacarActionPerformed
+        Sacar janelaSacar = new Sacar();
+        janelaSacar.setVisible(true);
+    }//GEN-LAST:event_btSacarActionPerformed
+
+    private void btVenderCriptoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVenderCriptoActionPerformed
+        SenhaVendeCripto janelaSenhaVende = new SenhaVendeCripto();
+        janelaSenhaVende.setVisible(true);
+    }//GEN-LAST:event_btVenderCriptoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -379,5 +418,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel lbl6;
     private javax.swing.JLabel lbl7;
     private javax.swing.JLabel lbl8;
+    private javax.swing.JLabel lblMenu;
     // End of variables declaration//GEN-END:variables
 }

@@ -75,37 +75,35 @@ public class InvestidorConectado {
         }
     }
     
-    public boolean verificarSenha(String investidorId, String senha) throws SQLException {
-    String sql = "SELECT senha FROM investidor WHERE investidor_id = ?";
-    try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
-        stmt.setInt(1, Integer.parseInt(investidorId));
-        stmt.setString(1, senha);
-        ResultSet rs = stmt.executeQuery();
-        if (rs.next()) {
-            return senha.equals(rs.getString("senha"));
+    public String buscarSaldosPorSenha(String senha) {
+        try {
+            String sql = "SELECT real, bitcoin, ethereum, ripple FROM saldos JOIN investidor ON saldos.investidor_id = investidor_id WHERE senha = ?";
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+            stmt.setString(1, senha);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return "Real: " + rs.getDouble("real") +
+                       ", Bitcoin: " + rs.getDouble("bitcoin") +
+                       ", Ethereum: " + rs.getDouble("ethereum") +
+                       ", Ripple: " + rs.getDouble("ripple");
+            } else {
+                return "Senha não encontrada ou saldo não disponível.";
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return "Erro ao acessar o banco de dados.";
         }
-        return false;
     }
-    }
+}
     
-    public Carteira getSaldo(String investidorId) throws SQLException {
-    String sql = "SELECT saldo_real, saldo_bitcoin, saldo_ethereum, saldo_ripple FROM saldos WHERE investidor_id = ?";
-    try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
-        stmt.setString(1, investidorId);
-        ResultSet rs = stmt.executeQuery();
-        if (rs.next()) {
-            return new Carteira(
-                rs.getString("investidor_id"),
-                rs.getDouble("saldo_real"),
-                rs.getDouble("saldo_bitcoin"),
-                rs.getDouble("saldo_ethereum"),
-                rs.getDouble("saldo_ripple")
-            );
-        }
-        return null; // Este retorno indica que não foram encontrados dados.
-    } catch (SQLException e) {
-        throw e; // Aqui você poderia também tratar a exceção ou logar o erro.
-    }
-}
-}
+//    public boolean depositar(String investidorId, double valor) throws SQLException {
+//    String sql = "UPDATE carteiras SET saldo_real = saldo_real + ? WHERE investidor_id = ?";
+//    try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+//        stmt.setDouble(1, valor);
+//        stmt.setString(2, investidorId);
+//        int affectedRows = stmt.executeUpdate();
+//        return affectedRows > 0;
+//    }
+
     

@@ -9,7 +9,10 @@ package Model;
  * @author Jpsab
  */
 public class Real extends Moedas{
-    public Real(double saldoInicial){
-        super("Real", saldoInicial);
+    private double valor;
+    
+    public Real(double saldoReal){
+        super("Real", saldoReal);
+        
     }
 }

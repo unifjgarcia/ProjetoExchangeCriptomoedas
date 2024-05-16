@@ -24,7 +24,6 @@ public class Saldo extends javax.swing.JFrame {
      */
     public Saldo() {
         initComponents();
-        inicializarComponentesDeNegocio();
         this.saldoInvestidor = saldoInvestidor;
     }
 
@@ -165,31 +164,9 @@ public class Saldo extends javax.swing.JFrame {
     private void txtSenhaSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaSaldoActionPerformed
         
     }//GEN-LAST:event_txtSenhaSaldoActionPerformed
-    
-    private void inicializarComponentesDeNegocio() {
-    try {
-        ConexaoBancoDados conexao = new ConexaoBancoDados();
-        InvestidorConectado investidorConectado = new InvestidorConectado(conexao.getConnection());
-        // Suponha que você tem uma forma de obter o investidorId aqui
-        String investidorId = "id do investidor"; // Você deve substituir isso pelo ID real obtido após o login
-        this.saldoInvestidor = new SaldoInvestidor(investidorConectado, investidorId);
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(this, "Erro ao iniciar a conexão: " + e.getMessage());
-    }
-    } 
+
     private void btConsultarSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConsultarSaldoActionPerformed
-       String senha = txtSenhaSaldo.getText();
-        if (saldoInvestidor != null) {
-            String resultado = saldoInvestidor.verificarSenhaEObterSaldos(senha);
-            if (!resultado.equals("Senha incorreta")) {
-                txtMostraSaldos.setText(resultado);
-            } else {
-                JOptionPane.showMessageDialog(this, "Senha incorreta, tente novamente.");
-                txtSenhaSaldo.setText("");
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Sistema não inicializado corretamente.");
-        }
+       
     }//GEN-LAST:event_btConsultarSaldoActionPerformed
 
     private void txtMostraSaldosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMostraSaldosActionPerformed

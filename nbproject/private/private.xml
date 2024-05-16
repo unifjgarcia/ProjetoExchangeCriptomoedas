@@ -5,15 +5,8 @@
         <group>
             <file>file:/C:/Users/Jpsab/OneDrive/Documentos/ProjetoExchangeCripto/src/Controller/SaldoInvestidor.java</file>
             <file>file:/C:/Users/Jpsab/OneDrive/Documentos/ProjetoExchangeCripto/src/View/Saldo.java</file>
-            <file>file:/C:/Users/Jpsab/OneDrive/Documentos/ProjetoExchangeCripto/src/Model/Investidor.java</file>
-            <file>file:/C:/Users/Jpsab/OneDrive/Documentos/ProjetoExchangeCripto/src/DAO/ConexaoBancoDados.java</file>
-            <file>file:/C:/Users/Jpsab/OneDrive/Documentos/ProjetoExchangeCripto/src/Controller/CadastroCorreto.java</file>
-            <file>file:/C:/Users/Jpsab/OneDrive/Documentos/ProjetoExchangeCripto/src/View/Login.java</file>
-            <file>file:/C:/Users/Jpsab/OneDrive/Documentos/ProjetoExchangeCripto/src/projetoexchangecripto/ProjetoExchangeCripto.java</file>
-            <file>file:/C:/Users/Jpsab/OneDrive/Documentos/ProjetoExchangeCripto/src/View/Menu.java</file>
-            <file>file:/C:/Users/Jpsab/OneDrive/Documentos/ProjetoExchangeCripto/src/View/Cadastro.java</file>
-            <file>file:/C:/Users/Jpsab/OneDrive/Documentos/ProjetoExchangeCripto/src/Controller/LoginSucesso.java</file>
-            <file>file:/C:/Users/Jpsab/OneDrive/Documentos/ProjetoExchangeCripto/src/View/ComprarCriptomoedas.java</file>
+            <file>file:/C:/Users/Jpsab/OneDrive/Documentos/ProjetoExchangeCripto/src/Controller/DepositoInvestidor.java</file>
+            <file>file:/C:/Users/Jpsab/OneDrive/Documentos/ProjetoExchangeCripto/src/View/Depósito.java</file>
             <file>file:/C:/Users/Jpsab/OneDrive/Documentos/ProjetoExchangeCripto/src/DAO/InvestidorConectado.java</file>
         </group>
     </open-files>

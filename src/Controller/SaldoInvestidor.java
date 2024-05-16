@@ -19,29 +19,17 @@ import java.sql.Connection;
  * @author Jpsab
  */
 public class SaldoInvestidor {
-    private InvestidorConectado investidorConectado;
-    private String investidorId; // ID do investidor logado
+    private Saldo view;
+    private InvestidorConectado dao;
 
-    public SaldoInvestidor(InvestidorConectado investidorConectado, String investidorId) {
-        this.investidorConectado = investidorConectado;
-        this.investidorId = investidorId;
+
+    public SaldoInvestidor(Saldo view, InvestidorConectado dao) {
+        this.view = view;
+        this.dao = dao;
     }
-
-    public String verificarSenhaEObterSaldos(String senha) {
-        try {
-            if (investidorConectado.verificarSenha(investidorId, senha)) {
-                Carteira carteira = investidorConectado.getSaldo(investidorId);
-                return formatarSaldos(carteira);
-            } else {
-                return "Senha incorreta";
-            }
-        } catch (SQLException e) {
-            return "Erro ao acessar o banco de dados: " + e.getMessage();
-        }
-    }
-
-    private String formatarSaldos(Carteira carteira) {
-        return String.format("Reais: %.2f, Bitcoin: %.4f, Ethereum: %.4f, Ripple: %.4f",
-            carteira.getReal(), carteira.getBitcoin(), carteira.getEthereum(), carteira.getRipple());
+    
+    public void consultarSaldo(String senha) {
+        String resultado = dao.buscarSaldosPorSenha(senha);
+        
     }
 }
