@@ -4,9 +4,12 @@
  */
 package View;
 
+import Controller.SaldoInvestidor;
+import DAO.InvestidorConectado;
 import Model.Investidor;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -182,6 +185,11 @@ public class Menu extends javax.swing.JFrame {
         lbl1.setText("1.");
 
         btConsultarSaldo.setText("Consultar Saldo");
+        btConsultarSaldo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btConsultarSaldoActionPerformed(evt);
+            }
+        });
 
         lbl2.setText("2.");
 
@@ -313,6 +321,11 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btComprarCriptoActionPerformed
 
+    private void btConsultarSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConsultarSaldoActionPerformed
+        Saldo janelaSaldo = new Saldo();
+        janelaSaldo.setVisible(true);
+    }//GEN-LAST:event_btConsultarSaldoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -347,7 +360,6 @@ public class Menu extends javax.swing.JFrame {
             }
         });
     }
-    
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

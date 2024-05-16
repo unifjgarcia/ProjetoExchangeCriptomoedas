@@ -23,41 +23,35 @@ public class CadastroCorreto {
         this.view = view;
     }
     
-    public void salvarInvestidor(){
-    String nome = view.getTxtNomeCadastro().getText();
-    String idade = view.getTxtIdadeCadastro().getText();
-    String cpf = view.getTxtCpfCadastro().getText();
-    String senha = view.getTxtSenhaCadastro().getText();
-    
-    if (!cpf.matches("\\d+")) {
-        JOptionPane.showMessageDialog(view, "CPF não pode conter caracteres especiais!");
-        return;
+    public void salvarInvestidor() {
+        String nome = view.getTxtNomeCadastro().getText();
+        String idade = view.getTxtIdadeCadastro().getText();
+        String cpf = view.getTxtCpfCadastro().getText();
+        String senha = view.getTxtSenhaCadastro().getText();
+
+        if (!cpf.matches("\\d+")) {
+            JOptionPane.showMessageDialog(view, "CPF não pode conter caracteres especiais!");
+            return;
+        }
+
+        if (senha.length() != 6 || !senha.matches("\\d+")) {
+            JOptionPane.showMessageDialog(view, "Senha deve conter exatamente 6 dígitos!");
+            return;
+        }
+
+        Investidor investidor = new Investidor(nome, idade, cpf, senha, null);
+        ConexaoBancoDados conectar = new ConexaoBancoDados();
+
+        try {
+            Connection conexao = conectar.getConnection();
+            InvestidorConectado conectado = new InvestidorConectado(conexao);
+            if (conectado.adicionaInvestidorECarteira(investidor)) {
+                JOptionPane.showMessageDialog(view, "Parabéns, você é um novo investidor!");
+            } else {
+                JOptionPane.showMessageDialog(view, "Erro ao criar investidor!");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(view, "Erro ao cadastrar! " + e.getMessage());
+        }
     }
-    
-    // Verifica se a senha tem exatamente 6 dígitos
-    if (senha.length() != 6 || !senha.matches("\\d+")) {
-        JOptionPane.showMessageDialog(view, "Senha deve conter exatamente 6 dígitos!");
-        return;
-    }
-    
-    double saldoInicialReal = 0.0; 
-    double saldoInicialBitcoin = 0.0; 
-    double saldoInicialEthereum = 0.0; 
-    double saldoInicialRipple = 0.0; 
-    
-    Carteira carteira = new Carteira(saldoInicialReal, saldoInicialBitcoin, saldoInicialEthereum, saldoInicialRipple);
-    carteira.atualizarCotacoes();
-    
-    Investidor investidor = new Investidor(nome, idade, cpf, senha, carteira);
-    ConexaoBancoDados conectar = new ConexaoBancoDados();
-    
-    try {
-        Connection conexao = conectar.getConnection();
-        InvestidorConectado conectado = new InvestidorConectado(conexao);
-        conectado.adicionaInvestidor(investidor);
-        JOptionPane.showMessageDialog(view, "Parabéns, você é um novo investidor!");
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(view, "Erro ao cadastrar!");
-    }
-}
 }

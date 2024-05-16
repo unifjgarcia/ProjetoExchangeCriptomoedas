@@ -9,18 +9,24 @@ package Model;
  * @author Jpsab
  */
 public class Carteira {
+    private String investidorId;
     private Real real;
     private Bitcoin bitcoin;
     private Ethereum ethereum;
     private Ripple ripple;
 
-    public Carteira(double saldoInicialReal, double saldoInicialBitcoin, double saldoInicialEthereum, double saldoInicialRipple) {
+    public Carteira(String investidorId ,double saldoInicialReal, double saldoInicialBitcoin, double saldoInicialEthereum, double saldoInicialRipple) {
+        this.investidorId = investidorId;
         this.real = new Real(saldoInicialReal);
         this.bitcoin = new Bitcoin(saldoInicialBitcoin);
         this.ethereum = new Ethereum(saldoInicialEthereum);
         this.ripple = new Ripple(saldoInicialRipple);
     }
-
+    
+    public String getInvestidorId() {
+        return investidorId;
+    }
+    
     public Real getReal() {
         return real;
     }
@@ -61,7 +67,7 @@ public class Carteira {
 
     @Override
     public String toString() {
-        return "Carteira{" + "real=" + real + ", bitcoin=" + bitcoin + ", ethereum=" + ethereum + ", ripple=" + ripple + '}';
+        return "Carteira{" + "investidorId=" + investidorId + "real=" + real + ", bitcoin=" + bitcoin + ", ethereum=" + ethereum + ", ripple=" + ripple + '}';
     }
     
     
