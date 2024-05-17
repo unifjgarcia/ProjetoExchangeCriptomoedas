@@ -4,6 +4,7 @@
  */
 package View;
 
+import Controller.LoginSucesso;
 import Controller.SaldoInvestidor;
 import DAO.ConexaoBancoDados;
 import DAO.InvestidorConectado;
@@ -24,7 +25,8 @@ public class Saldo extends javax.swing.JFrame {
      */
     public Saldo() {
         initComponents();
-        this.saldoInvestidor = saldoInvestidor;
+        saldoInvestidor = new SaldoInvestidor(this,null);
+        
     }
 
     public SaldoInvestidor getSaldoInvestidor() {
@@ -166,7 +168,7 @@ public class Saldo extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSenhaSaldoActionPerformed
 
     private void btConsultarSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConsultarSaldoActionPerformed
-       
+        saldoInvestidor.ConsultarSaldo();
     }//GEN-LAST:event_btConsultarSaldoActionPerformed
 
     private void txtMostraSaldosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMostraSaldosActionPerformed

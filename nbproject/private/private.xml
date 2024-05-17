@@ -3,11 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Jpsab/OneDrive/Documentos/ProjetoExchangeCripto/src/Controller/SaldoInvestidor.java</file>
-            <file>file:/C:/Users/Jpsab/OneDrive/Documentos/ProjetoExchangeCripto/src/View/Saldo.java</file>
-            <file>file:/C:/Users/Jpsab/OneDrive/Documentos/ProjetoExchangeCripto/src/Controller/DepositoInvestidor.java</file>
-            <file>file:/C:/Users/Jpsab/OneDrive/Documentos/ProjetoExchangeCripto/src/View/Depósito.java</file>
-            <file>file:/C:/Users/Jpsab/OneDrive/Documentos/ProjetoExchangeCripto/src/DAO/InvestidorConectado.java</file>
+            <file>file:/C:/Users/unifjgarcia/Downloads/ProjetoExchangeCripto%20(3)/ProjetoExchangeCripto/src/View/Cadastro.java</file>
+            <file>file:/C:/Users/unifjgarcia/Downloads/ProjetoExchangeCripto%20(3)/ProjetoExchangeCripto/src/View/SenhaCompraCripto.java</file>
+            <file>file:/C:/Users/unifjgarcia/Downloads/ProjetoExchangeCripto%20(3)/ProjetoExchangeCripto/src/DAO/InvestidorConectado.java</file>
+            <file>file:/C:/Users/unifjgarcia/Downloads/ProjetoExchangeCripto%20(3)/ProjetoExchangeCripto/src/Controller/LoginSucesso.java</file>
+            <file>file:/C:/Users/unifjgarcia/Downloads/ProjetoExchangeCripto%20(3)/ProjetoExchangeCripto/src/Model/Carteira.java</file>
+            <file>file:/C:/Users/unifjgarcia/Downloads/ProjetoExchangeCripto%20(3)/ProjetoExchangeCripto/src/Model/Tarifacao.java</file>
+            <file>file:/C:/Users/unifjgarcia/Downloads/ProjetoExchangeCripto%20(3)/ProjetoExchangeCripto/src/Model/Moedas.java</file>
+            <file>file:/C:/Users/unifjgarcia/Downloads/ProjetoExchangeCripto%20(3)/ProjetoExchangeCripto/src/View/Login.java</file>
+            <file>file:/C:/Users/unifjgarcia/Downloads/ProjetoExchangeCripto%20(3)/ProjetoExchangeCripto/src/View/Saldo.java</file>
+            <file>file:/C:/Users/unifjgarcia/Downloads/ProjetoExchangeCripto%20(3)/ProjetoExchangeCripto/src/Controller/SaldoInvestidor.java</file>
+            <file>file:/C:/Users/unifjgarcia/Downloads/ProjetoExchangeCripto%20(3)/ProjetoExchangeCripto/src/View/SenhaVendeCripto.java</file>
+            <file>file:/C:/Users/unifjgarcia/Downloads/ProjetoExchangeCripto%20(3)/ProjetoExchangeCripto/src/Model/Bitcoin.java</file>
         </group>
     </open-files>
 </project-private>

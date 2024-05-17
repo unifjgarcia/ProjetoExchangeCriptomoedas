@@ -23,7 +23,7 @@ public class Deposito extends javax.swing.JFrame {
      */
     public Deposito() {
         initComponents();
-        
+        depositoInvestidor = new DepositoInvestidor(this,null,null);
     }
 
     public DepositoInvestidor getDepositoInvestidor() {
@@ -50,12 +50,28 @@ public class Deposito extends javax.swing.JFrame {
         this.lblDigitaDeposito = lblDigitaDeposito;
     }
 
+    public JLabel getLblDigitaSenha() {
+        return lblDigitaSenha;
+    }
+
+    public void setLblDigitaSenha(JLabel lblDigitaSenha) {
+        this.lblDigitaSenha = lblDigitaSenha;
+    }
+
     public JLabel getLblTituloDepositar() {
         return lblTituloDepositar;
     }
 
     public void setLblTituloDepositar(JLabel lblTituloDepositar) {
         this.lblTituloDepositar = lblTituloDepositar;
+    }
+
+    public JTextField getTxtDigitaSenha() {
+        return txtDigitaSenha;
+    }
+
+    public void setTxtDigitaSenha(JTextField txtDigitaSenha) {
+        this.txtDigitaSenha = txtDigitaSenha;
     }
 
     public JTextField getTxtValorDeposito() {
@@ -65,6 +81,8 @@ public class Deposito extends javax.swing.JFrame {
     public void setTxtValorDeposito(JTextField txtValorDeposito) {
         this.txtValorDeposito = txtValorDeposito;
     }
+
+    
     
     
     
@@ -81,6 +99,8 @@ public class Deposito extends javax.swing.JFrame {
         lblDigitaDeposito = new javax.swing.JLabel();
         btDepositar = new javax.swing.JButton();
         txtValorDeposito = new javax.swing.JTextField();
+        lblDigitaSenha = new javax.swing.JLabel();
+        txtDigitaSenha = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -104,36 +124,49 @@ public class Deposito extends javax.swing.JFrame {
             }
         });
 
+        lblDigitaSenha.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblDigitaSenha.setText("Digite sua senha:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btDepositar)
+                .addGap(291, 291, 291))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(280, 280, 280)
                         .addComponent(lblTituloDepositar))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(lblDigitaDeposito)
-                        .addGap(45, 45, 45)
-                        .addComponent(txtValorDeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(90, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btDepositar)
-                .addGap(291, 291, 291))
+                        .addGap(49, 49, 49)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblDigitaDeposito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(35, 35, 35)
+                                .addComponent(txtValorDeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblDigitaSenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtDigitaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblTituloDepositar)
-                .addGap(106, 106, 106)
+                .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDigitaDeposito)
                     .addComponent(txtValorDeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDigitaSenha)
+                    .addComponent(txtDigitaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addComponent(btDepositar)
                 .addGap(80, 80, 80))
         );
@@ -142,9 +175,7 @@ public class Deposito extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btDepositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDepositarActionPerformed
-        String valorDeposito = txtValorDeposito.getText();
-        double valor = Double.parseDouble(valorDeposito);
-        String investidorId = SessaoInvestidor.getInvestidorId();
+        depositoInvestidor.depositar();
     }//GEN-LAST:event_btDepositarActionPerformed
 
     private void txtValorDepositoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorDepositoActionPerformed
@@ -191,7 +222,9 @@ public class Deposito extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btDepositar;
     private javax.swing.JLabel lblDigitaDeposito;
+    private javax.swing.JLabel lblDigitaSenha;
     private javax.swing.JLabel lblTituloDepositar;
+    private javax.swing.JTextField txtDigitaSenha;
     private javax.swing.JTextField txtValorDeposito;
     // End of variables declaration//GEN-END:variables
 }

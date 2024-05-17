@@ -9,13 +9,13 @@ package Model;
  * @author Jpsab
  */
 public class Carteira {
-    private String investidorId;
+    private int investidorId;
     private Real real;
     private Bitcoin bitcoin;
     private Ethereum ethereum;
     private Ripple ripple;
 
-    public Carteira(String investidorId ,double saldoReal, double saldoBitcoin, double saldoEthereum, double saldoRipple) {
+    public Carteira(int investidorId ,double saldoReal, double saldoBitcoin, double saldoEthereum, double saldoRipple) {
         this.investidorId = investidorId;
         this.real = new Real(saldoReal);
         this.bitcoin = new Bitcoin(saldoBitcoin);
@@ -23,7 +23,7 @@ public class Carteira {
         this.ripple = new Ripple(saldoRipple);
     }
     
-    public String getInvestidorId() {
+    public int getInvestidorId() {
         return investidorId;
     }
     

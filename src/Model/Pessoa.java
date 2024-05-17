@@ -7,6 +7,7 @@ package Model;
  */
 public class Pessoa {
     private String nome, idade, cpf, senha;
+    
 
     public Pessoa() {
     }
@@ -16,6 +17,7 @@ public class Pessoa {
         this.idade = idade;
         this.cpf = cpf;
         this.senha = senha;
+        
     }
 
     public String getNome() {
@@ -54,6 +56,10 @@ public class Pessoa {
     public String toString() {
         return "Pessoa{" + "nome=" + nome + ", idade=" + idade + ", cpf=" + cpf + ", senha=" + senha + '}';
     }
+
+    
+
+    
     
     
 }
