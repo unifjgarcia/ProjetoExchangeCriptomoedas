@@ -4,20 +4,20 @@
  */
 package Controller;
 
+import Model.Investidor;
+
 /**
  *
  * @author Jpsab
  */
 public class SessaoInvestidor {
-    private static int investidorId;
+    private static Investidor investidor;
 
-    public static int getInvestidorId() {
-        return investidorId;
+    public static Investidor getInvestidor() {
+        return investidor;
     }
 
-    public static void setInvestidorId(int investidorId) {
-        SessaoInvestidor.investidorId = investidorId;
+    public static void setInvestidor(Investidor investidor) {
+        SessaoInvestidor.investidor = investidor;
     }
-    
-    
 }

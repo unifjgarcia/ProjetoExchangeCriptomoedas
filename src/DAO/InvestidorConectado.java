@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package DAO;
-import Controller.SessaoInvestidor;
 import Model.Carteira;
 import Model.Investidor;
 import java.sql.Connection;
@@ -11,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Random;
 
 /**
  *
@@ -23,35 +23,22 @@ public class InvestidorConectado {
         this.conexao = conexao;
     }
     
-    public ResultSet infoInvestidor(Investidor investidor) throws SQLException{
-        String sql = "select investidor_id from investidor where cpf = ? and senha = ?";
-        String sqlSaldo = "select saldo_real, saldo_bitcoin, saldo_ethereum, saldo_ripple from saldos where investidor_id = investidor.investidor_id";
+    public ResultSet infoInvestidor(Investidor investidor) throws SQLException {
+        String sql = "SELECT nome, idade, senha, saldo_real, saldo_bitcoin, saldo_ethereum, saldo_ripple " +
+                     "FROM investidor JOIN saldos ON investidor.cpf = saldos.cpf " +
+                     "WHERE investidor.cpf = ? AND investidor.senha = ?";
         PreparedStatement statement = conexao.prepareStatement(sql);
-        //corrigindo problema injeção sql
         statement.setString(1, investidor.getCpf());
         statement.setString(2, investidor.getSenha());
-        statement.execute();
-        ResultSet resultado = statement.getResultSet();
-        return resultado;
-        
-    }
-    
-    public ResultSet carteiraSaldos(int investidorId) throws SQLException{
-        String sql = "SELECT s.saldo_real, s.saldo_bitcoin, s.saldo_ethereum, s.saldo_ripple, i.senha " +
-                 "FROM saldos s " +
-                 "JOIN investidor i ON s.investidor_id = i.investidor_id " +
-                 "WHERE s.investidor_id = ?";
-        PreparedStatement statement = conexao.prepareStatement(sql);
-        statement.setInt(1, investidorId);
         return statement.executeQuery();
-        }
+    }
     
     public boolean adicionaInvestidorECarteira(Investidor investidor) throws SQLException {
         String sqlInvestidor = "INSERT INTO investidor (nome, idade, cpf, senha) VALUES (?, ?, ?, ?)";
-        String sqlCarteira = "INSERT INTO saldos (investidor_id, saldo_real, saldo_bitcoin, saldo_ethereum, saldo_ripple) VALUES (?, 0.0, 0.0, 0.0, 0.0)";
-        
+        String sqlCarteira = "INSERT INTO saldos (cpf, saldo_real, saldo_bitcoin, saldo_ethereum, saldo_ripple) VALUES (?, 0.0, 0.0, 0.0, 0.0)";
+
         conexao.setAutoCommit(false);  // Iniciar transação
-        try (PreparedStatement stmtInvestidor = conexao.prepareStatement(sqlInvestidor, Statement.RETURN_GENERATED_KEYS);
+        try (PreparedStatement stmtInvestidor = conexao.prepareStatement(sqlInvestidor);
              PreparedStatement stmtCarteira = conexao.prepareStatement(sqlCarteira)) {
 
             // Configura e executa o statement do investidor
@@ -65,18 +52,9 @@ public class InvestidorConectado {
                 throw new SQLException("Falha ao criar Investidor.");
             }
 
-            // Obtém o ID gerado
-            try (ResultSet generatedKeys = stmtInvestidor.getGeneratedKeys()) {
-                if (generatedKeys.next()) {
-                    int investidorId = generatedKeys.getInt(1);
-
-                    // Configura e executa o statement da carteira
-                    stmtCarteira.setInt(1, investidorId);
-                    stmtCarteira.executeUpdate();
-                } else {
-                    throw new SQLException("Falha ao criar Investidor.");
-                }
-            }
+            // Configura e executa o statement da carteira
+            stmtCarteira.setString(1, investidor.getCpf());
+            stmtCarteira.executeUpdate();
 
             conexao.commit();  // Confirma a transação
             return true;
@@ -88,36 +66,150 @@ public class InvestidorConectado {
         }
     }
     
-    public boolean depositarReais(int investidorId, double valor) throws SQLException {
-        String sql = "UPDATE saldos SET saldo_real = saldo_real + ? WHERE investidor_id = ?";
+    public ResultSet carteiraSaldos(Investidor investidor) throws SQLException {
+        String sql = "SELECT saldo_real, saldo_bitcoin, saldo_ethereum, saldo_ripple " +
+                     "FROM saldos WHERE cpf = ?";
         PreparedStatement statement = conexao.prepareStatement(sql);
-        statement.setDouble(1, valor);
-        statement.setInt(2, investidorId);
-        int linhasAfetadas = statement.executeUpdate();
-        return linhasAfetadas > 0;
+        statement.setString(1, investidor.getCpf());
+        return statement.executeQuery();
     }
     
-    public void registrarTransacao(int investidorId, String tipoTransacao, String moeda, double valor) throws SQLException {
-        String sql = "INSERT INTO transacoes (investidor_id, tipo_transacao, moeda, valor, data_hora) VALUES (?, ?, ?, ?, current_timestamp)";
+    public Investidor buscarInvestidorPorCPF(String cpf) throws SQLException {
+        String sqlInvestidor = "SELECT nome, idade, cpf, senha FROM investidor WHERE cpf = ?";
+        String sqlCarteira = "SELECT saldo_real, saldo_bitcoin, saldo_ethereum, saldo_ripple FROM saldos WHERE cpf = ?";
+
+        try (PreparedStatement stmtInvestidor = conexao.prepareStatement(sqlInvestidor);
+             PreparedStatement stmtCarteira = conexao.prepareStatement(sqlCarteira)) {
+
+            stmtInvestidor.setString(1, cpf);
+            ResultSet resultadoInvestidor = stmtInvestidor.executeQuery();
+
+            if (resultadoInvestidor.next()) {
+                String nome = resultadoInvestidor.getString("nome");
+                String idade = resultadoInvestidor.getString("idade");
+                String senha = resultadoInvestidor.getString("senha");
+
+                stmtCarteira.setString(1, cpf);
+                ResultSet resultadoCarteira = stmtCarteira.executeQuery();
+
+                if (resultadoCarteira.next()) {
+                    double saldoReal = resultadoCarteira.getDouble("saldo_real");
+                    double saldoBitcoin = resultadoCarteira.getDouble("saldo_bitcoin");
+                    double saldoEthereum = resultadoCarteira.getDouble("saldo_ethereum");
+                    double saldoRipple = resultadoCarteira.getDouble("saldo_ripple");
+
+                    Carteira carteira = new Carteira(saldoReal, saldoBitcoin, saldoEthereum, saldoRipple);
+                    return new Investidor(nome, idade, cpf, senha, carteira);
+                }
+            }
+            return null;
+        }
+    }
+    
+    public boolean depositar(String cpf, double valor) throws SQLException {
+        String sqlAtualizarSaldo = "UPDATE saldos SET saldo_real = saldo_real + ? WHERE cpf = ?";
+        String sqlRegistrarTransacao = "INSERT INTO transacoes (cpf, tipo_transacao, moeda, valor, data_hora) VALUES (?, 'Depósito', 'Real', ?, current_timestamp)";
+
+        conexao.setAutoCommit(false);
+        try (PreparedStatement stmtAtualizarSaldo = conexao.prepareStatement(sqlAtualizarSaldo);
+             PreparedStatement stmtRegistrarTransacao = conexao.prepareStatement(sqlRegistrarTransacao)) {
+
+            stmtAtualizarSaldo.setDouble(1, valor);
+            stmtAtualizarSaldo.setString(2, cpf);
+            int linhasAfetadas = stmtAtualizarSaldo.executeUpdate();
+            if (linhasAfetadas == 0) {
+                throw new SQLException("Falha ao atualizar saldo.");
+            }
+
+            stmtRegistrarTransacao.setString(1, cpf);
+            stmtRegistrarTransacao.setDouble(2, valor);
+            stmtRegistrarTransacao.executeUpdate();
+
+            conexao.commit();
+            return true;
+        } catch (SQLException e) {
+            conexao.rollback();
+            throw e;
+        } finally {
+            conexao.setAutoCommit(true);
+        }
+    }
+    
+    public boolean sacar(String cpf, double valor) throws SQLException {
+        String sqlVerificarSaldo = "SELECT saldo_real FROM saldos WHERE cpf = ?";
+        String sqlAtualizarSaldo = "UPDATE saldos SET saldo_real = saldo_real - ? WHERE cpf = ? AND saldo_real >= ?";
+        String sqlRegistrarTransacao = "INSERT INTO transacoes (cpf, tipo_transacao, moeda, valor, data_hora) VALUES (?, 'Saque', 'Real', ?, current_timestamp)";
+
+        conexao.setAutoCommit(false);
+        try (PreparedStatement stmtVerificarSaldo = conexao.prepareStatement(sqlVerificarSaldo);
+             PreparedStatement stmtAtualizarSaldo = conexao.prepareStatement(sqlAtualizarSaldo);
+             PreparedStatement stmtRegistrarTransacao = conexao.prepareStatement(sqlRegistrarTransacao)) {
+
+            stmtVerificarSaldo.setString(1, cpf);
+            ResultSet resultado = stmtVerificarSaldo.executeQuery();
+            if (!resultado.next() || resultado.getDouble("saldo_real") < valor) {
+                throw new SQLException("Saldo insuficiente.");
+            }
+
+            stmtAtualizarSaldo.setDouble(1, valor);
+            stmtAtualizarSaldo.setString(2, cpf);
+            stmtAtualizarSaldo.setDouble(3, valor);
+            int linhasAfetadas = stmtAtualizarSaldo.executeUpdate();
+            if (linhasAfetadas == 0) {
+                throw new SQLException("Falha ao atualizar saldo.");
+            }
+
+            stmtRegistrarTransacao.setString(1, cpf);
+            stmtRegistrarTransacao.setDouble(2, valor);
+            stmtRegistrarTransacao.executeUpdate();
+
+            conexao.commit();
+            return true;
+        } catch (SQLException e) {
+            conexao.rollback();
+            throw e;
+        } finally {
+            conexao.setAutoCommit(true);
+        }
+    }
+    
+    public void registrarTransacao(String cpf, String tipoTransacao, String moeda, double valor) throws SQLException {
+        String sql = "INSERT INTO transacoes (cpf, tipo_transacao, moeda, valor, data_hora) VALUES (?, ?, ?, ?, current_timestamp)";
         PreparedStatement statement = conexao.prepareStatement(sql);
-        statement.setInt(1, investidorId);
+        statement.setString(1, cpf);
         statement.setString(2, tipoTransacao);
         statement.setString(3, moeda);
         statement.setDouble(4, valor);
         statement.executeUpdate();
     }
     
-    public boolean sacarReais(int investidorId, double valor) throws SQLException {
-        String sql = "UPDATE saldos SET saldo_real = saldo_real - ? WHERE investidor_id = ? AND saldo_real >= ?";
-        PreparedStatement statement = conexao.prepareStatement(sql);
-        statement.setDouble(1, valor);
-        statement.setInt(2, investidorId);
-        statement.setDouble(3, valor);
-        int linhasAfetadas = statement.executeUpdate();
-        return linhasAfetadas > 0;
+    public void variarCotacao() throws SQLException {
+        // Obter as cotações mais recentes
+        String sql = "SELECT bitcoin, ethereum, ripple FROM cotacoes ORDER BY data_hora DESC LIMIT 1";
+        try (PreparedStatement stmt = conexao.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            if (rs.next()) {
+                double bitcoin = rs.getDouble("bitcoin");
+                double ethereum = rs.getDouble("ethereum");
+                double ripple = rs.getDouble("ripple");
+
+                // Atualizar os valores com a variação
+                bitcoin += bitcoin * (-0.05 + (0.05 + 0.05) * new Random().nextDouble());
+                ethereum += ethereum * (-0.05 + (0.05 + 0.05) * new Random().nextDouble());
+                ripple += ripple * (-0.05 + (0.05 + 0.05) * new Random().nextDouble());
+
+                // Insira os novos valores no banco de dados
+                String insertSql = "INSERT INTO cotacoes (bitcoin, ethereum, ripple) VALUES (?, ?, ?)";
+                try (PreparedStatement insertStmt = conexao.prepareStatement(insertSql)) {
+                    insertStmt.setDouble(1, bitcoin);
+                    insertStmt.setDouble(2, ethereum);
+                    insertStmt.setDouble(3, ripple);
+                    insertStmt.executeUpdate();
+                }
+            }
+        }
     }
-    
-    
 }
     
 

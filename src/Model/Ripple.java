@@ -9,8 +9,8 @@ package Model;
  * @author Jpsab
  */
 public class Ripple extends Moedas implements Tarifacao{
-    public Ripple(double saldoInicial) {
-        super("Ripple", saldoInicial);
+    public Ripple(double saldo) {
+        super("Ripple", saldo);
     }
     
     public double taxaCompra(double comprarCripto){

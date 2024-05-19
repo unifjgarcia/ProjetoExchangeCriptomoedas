@@ -6,6 +6,7 @@ package Controller;
 
 import DAO.ConexaoBancoDados;
 import DAO.InvestidorConectado;
+import Model.Carteira;
 import Model.Investidor;
 import View.Login;
 import View.Menu;
@@ -26,24 +27,35 @@ public class LoginSucesso {
     }
 
     public void LoginInvestidor(){
-        int investidorId = SessaoInvestidor.getInvestidorId();
-        Investidor investidor = new Investidor(investidorId, null,null, view.getTxtCPF().getText(),
-                                                          view.getTxtSenha().getText(), null);
+        Investidor investidor = new Investidor(null, null, view.getTxtCPF().getText(), view.getTxtSenha().getText(), null);
         ConexaoBancoDados conectar = new ConexaoBancoDados();
-        try{
+        try {
             Connection conexao = conectar.getConnection();
             InvestidorConectado conectado = new InvestidorConectado(conexao);
             ResultSet resultado = conectado.infoInvestidor(investidor);
-            if(resultado.next()){
+            if (resultado.next()) {
+                // Definir o investidor na sessão
+                investidor.setNome(resultado.getString("nome"));
+                investidor.setIdade(resultado.getString("idade"));
+                investidor.setSenha(resultado.getString("senha"));
+                Carteira carteira = new Carteira(
+                    resultado.getDouble("saldo_real"),
+                    resultado.getDouble("saldo_bitcoin"),
+                    resultado.getDouble("saldo_ethereum"),
+                    resultado.getDouble("saldo_ripple")
+                );
+                investidor.setCarteira(carteira);
+                SessaoInvestidor.setInvestidor(investidor);
+
                 JOptionPane.showMessageDialog(view, "Login realizado com sucesso!");
                 Menu janelaMenu = new Menu();
                 janelaMenu.setVisible(true);
                 view.setVisible(false);
-            } else{
-                JOptionPane.showMessageDialog(view, "Seu cpf ou senha estão errados ou não cadastrados");
+            } else {
+                JOptionPane.showMessageDialog(view, "Seu CPF ou senha estão errados ou não cadastrados");
             }
-        } catch(SQLException e) {
-            JOptionPane.showMessageDialog(view, "Erro de conexão!");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(view, "Erro de conexão: " + e.getMessage());
         }
     }
 }

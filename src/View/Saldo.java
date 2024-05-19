@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.sql.SQLException;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -25,7 +27,7 @@ public class Saldo extends javax.swing.JFrame {
      */
     public Saldo() {
         initComponents();
-        saldoInvestidor = new SaldoInvestidor(this,null);
+        saldoInvestidor = new SaldoInvestidor(this);
         
     }
 
@@ -45,6 +47,14 @@ public class Saldo extends javax.swing.JFrame {
         this.btConsultarSaldo = btConsultarSaldo;
     }
 
+    public JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    public void setjScrollPane1(JScrollPane jScrollPane1) {
+        this.jScrollPane1 = jScrollPane1;
+    }
+
     public JLabel getLblSenhaSaldo() {
         return lblSenhaSaldo;
     }
@@ -61,11 +71,11 @@ public class Saldo extends javax.swing.JFrame {
         this.lblTituloSaldo = lblTituloSaldo;
     }
 
-    public JTextField getTxtMostraSaldos() {
+    public JTextArea getTxtMostraSaldos() {
         return txtMostraSaldos;
     }
 
-    public void setTxtMostraSaldos(JTextField txtMostraSaldos) {
+    public void setTxtMostraSaldos(JTextArea txtMostraSaldos) {
         this.txtMostraSaldos = txtMostraSaldos;
     }
 
@@ -76,6 +86,8 @@ public class Saldo extends javax.swing.JFrame {
     public void setTxtSenhaSaldo(JTextField txtSenhaSaldo) {
         this.txtSenhaSaldo = txtSenhaSaldo;
     }
+
+    
     
     
     
@@ -92,7 +104,8 @@ public class Saldo extends javax.swing.JFrame {
         txtSenhaSaldo = new javax.swing.JTextField();
         lblSenhaSaldo = new javax.swing.JLabel();
         btConsultarSaldo = new javax.swing.JButton();
-        txtMostraSaldos = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtMostraSaldos = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -116,11 +129,9 @@ public class Saldo extends javax.swing.JFrame {
             }
         });
 
-        txtMostraSaldos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMostraSaldosActionPerformed(evt);
-            }
-        });
+        txtMostraSaldos.setColumns(20);
+        txtMostraSaldos.setRows(5);
+        jScrollPane1.setViewportView(txtMostraSaldos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -141,8 +152,8 @@ public class Saldo extends javax.swing.JFrame {
                         .addGap(259, 259, 259)
                         .addComponent(btConsultarSaldo))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addComponent(txtMostraSaldos, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(83, 83, 83)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -155,9 +166,9 @@ public class Saldo extends javax.swing.JFrame {
                     .addComponent(lblSenhaSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(51, 51, 51)
                 .addComponent(btConsultarSaldo)
-                .addGap(27, 27, 27)
-                .addComponent(txtMostraSaldos, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(49, 49, 49)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         pack();
@@ -170,10 +181,6 @@ public class Saldo extends javax.swing.JFrame {
     private void btConsultarSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConsultarSaldoActionPerformed
         saldoInvestidor.ConsultarSaldo();
     }//GEN-LAST:event_btConsultarSaldoActionPerformed
-
-    private void txtMostraSaldosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMostraSaldosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMostraSaldosActionPerformed
     
     
     
@@ -216,9 +223,10 @@ public class Saldo extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btConsultarSaldo;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblSenhaSaldo;
     private javax.swing.JLabel lblTituloSaldo;
-    private javax.swing.JTextField txtMostraSaldos;
+    private javax.swing.JTextArea txtMostraSaldos;
     private javax.swing.JTextField txtSenhaSaldo;
     // End of variables declaration//GEN-END:variables
 }

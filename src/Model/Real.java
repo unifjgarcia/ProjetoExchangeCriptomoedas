@@ -8,11 +8,21 @@ package Model;
  *
  * @author Jpsab
  */
-public class Real extends Moedas{
-    private double valor;
-    
-    public Real(double saldoReal){
-        super("Real", saldoReal);
-        
+public class Real extends Moedas implements Tarifacao {
+
+    public Real(double saldo) {
+        super("Real", saldo);
+    }
+
+    @Override
+    public double taxaCompra(double comprarCripto) {
+        // Implementação específica para Real, se necessário
+        return 0;
+    }
+
+    @Override
+    public double taxaVenda(double venderCripto) {
+        // Implementação específica para Real, se necessário
+        return 0;
     }
 }

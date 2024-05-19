@@ -9,8 +9,8 @@ package Model;
  * @author Jpsab
  */
 public class Ethereum extends Moedas implements Tarifacao{
-    public Ethereum(double saldoInicial) {
-        super("Ethereum", saldoInicial);
+    public Ethereum(double saldo) {
+        super("Ethereum", saldo);
     }
     
     public double taxaCompra(double comprarCripto){

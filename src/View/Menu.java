@@ -4,7 +4,9 @@
  */
 package View;
 
+import Controller.AtualizarCotacoes;
 import Controller.SaldoInvestidor;
+import DAO.ConexaoBancoDados;
 import DAO.InvestidorConectado;
 import Model.Investidor;
 import javax.swing.JButton;
@@ -22,6 +24,8 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
+        atualizarCotacoes = new AtualizarCotacoes(null);
+        conexao = new ConexaoBancoDados();
     }
 
     public JButton getBtAtualizarCotacao() {
@@ -240,6 +244,11 @@ public class Menu extends javax.swing.JFrame {
         lbl7.setText("7.");
 
         btAtualizarCotacao.setText("Atualizar cotação");
+        btAtualizarCotacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAtualizarCotacaoActionPerformed(evt);
+            }
+        });
 
         lbl8.setText("8.");
 
@@ -365,6 +374,11 @@ public class Menu extends javax.swing.JFrame {
         janelaSenhaVende.setVisible(true);
     }//GEN-LAST:event_btVenderCriptoActionPerformed
 
+    private void btAtualizarCotacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAtualizarCotacaoActionPerformed
+        atualizarCotacoes.atualizarCotacao();
+        conexao.inicializarCotacoes(50000.0, 4000.0, 1.0);
+    }//GEN-LAST:event_btAtualizarCotacaoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -400,6 +414,8 @@ public class Menu extends javax.swing.JFrame {
         });
     }
     
+    private AtualizarCotacoes atualizarCotacoes;
+    private ConexaoBancoDados conexao;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAtualizarCotacao;

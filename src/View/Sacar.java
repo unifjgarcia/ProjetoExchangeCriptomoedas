@@ -124,7 +124,7 @@ public class Sacar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSacarActionPerformed
-        saqueInvestidor.sacar();
+        saqueInvestidor.sacarReais();
     }//GEN-LAST:event_btSacarActionPerformed
 
     /**

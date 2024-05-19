@@ -9,30 +9,24 @@ package Model;
  * @author Jpsab
  */
 public class Carteira {
-    private int investidorId;
     private Real real;
     private Bitcoin bitcoin;
     private Ethereum ethereum;
     private Ripple ripple;
 
-    public Carteira(int investidorId ,double saldoReal, double saldoBitcoin, double saldoEthereum, double saldoRipple) {
-        this.investidorId = investidorId;
+    public Carteira(double saldoReal, double saldoBitcoin, double saldoEthereum, double saldoRipple) {
         this.real = new Real(saldoReal);
         this.bitcoin = new Bitcoin(saldoBitcoin);
         this.ethereum = new Ethereum(saldoEthereum);
         this.ripple = new Ripple(saldoRipple);
     }
-    
-    public int getInvestidorId() {
-        return investidorId;
-    }
-    
+
     public Real getReal() {
         return real;
     }
 
     public void setReal(double saldoReal) {
-        this.real = real;
+        this.real.setSaldo(saldoReal);
     }
 
     public Bitcoin getBitcoin() {
@@ -40,7 +34,7 @@ public class Carteira {
     }
 
     public void setBitcoin(double saldoBitcoin) {
-        this.bitcoin = bitcoin;
+        this.bitcoin.setSaldo(saldoBitcoin);
     }
 
     public Ethereum getEthereum() {
@@ -48,7 +42,7 @@ public class Carteira {
     }
 
     public void setEthereum(double saldoEthereum) {
-        this.ethereum = ethereum;
+        this.ethereum.setSaldo(saldoEthereum);
     }
 
     public Ripple getRipple() {
@@ -56,9 +50,17 @@ public class Carteira {
     }
 
     public void setRipple(double saldoRipple) {
-        this.ripple = ripple;
+        this.ripple.setSaldo(saldoRipple);
     }
-    
+
+    public void adicionarSaldo(double valor) {
+        this.real.adicionarSaldo(valor);
+    }
+
+    public boolean retirarSaldo(double valor) {
+        return this.real.retirarSaldo(valor);
+    }
+
     public void atualizarCotacoes() {
         bitcoin.variarCotacao();
         ethereum.variarCotacao();
@@ -67,8 +69,11 @@ public class Carteira {
 
     @Override
     public String toString() {
-        return "Carteira{" + "investidorId=" + investidorId + "real=" + real + ", bitcoin=" + bitcoin + ", ethereum=" + ethereum + ", ripple=" + ripple + '}';
+        return "Carteira{" +
+                "real=" + real +
+                ", bitcoin=" + bitcoin +
+                ", ethereum=" + ethereum +
+                ", ripple=" + ripple +
+                '}';
     }
-    
-    
 }

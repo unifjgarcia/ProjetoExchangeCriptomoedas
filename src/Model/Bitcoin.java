@@ -9,8 +9,8 @@ package Model;
  * @author Jpsab
  */
 public class Bitcoin extends Moedas implements Tarifacao{
-    public Bitcoin(double saldoInicial) {
-        super("Bitcoin", saldoInicial);
+    public Bitcoin(double saldo) {
+        super("Bitcoin", saldo);
     }
     
     public double taxaCompra(double comprarCripto){

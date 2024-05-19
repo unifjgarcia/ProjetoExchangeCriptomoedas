@@ -29,52 +29,24 @@ public class SaqueInvestidor {
         this.moedas = moedas;
     }
     
-    public void sacar() {
-        int investidorId = SessaoInvestidor.getInvestidorId(); // Obter o ID do investidor da sessão
-        double valor = Double.parseDouble(view.getTxtValorSaque().getText()); // Obtém o valor a ser sacado
-
-        // Mensagens de depuração
-        System.out.println("ID do Investidor: " + investidorId);
-        System.out.println("Valor a ser sacado: " + valor);
-
-        // Criar objeto Investidor com os dados necessários
-        Investidor investidor = new Investidor(investidorId, null, null, null, null, null);
+    public void sacarReais() {
+        double valor = Double.parseDouble(view.getTxtValorSaque().getText());
 
         ConexaoBancoDados conectar = new ConexaoBancoDados();
         try {
             Connection conexao = conectar.getConnection();
             InvestidorConectado conectado = new InvestidorConectado(conexao);
-            
-            // Obter o saldo atual
-            ResultSet resultado = conectado.carteiraSaldos(investidorId);
-            if (resultado.next()) {
-                double saldoAtual = resultado.getDouble("saldo_real");
+            boolean sucesso = conectado.sacar(SessaoInvestidor.getInvestidor().getCpf(), valor);
 
-                // Verificar se há saldo suficiente
-                if (saldoAtual >= valor) {
-                    // Atualizar o saldo localmente
-                    if (moedas.retirarSaldo(valor)) {
-                        // Persistir a alteração no banco de dados
-                        boolean sucesso = conectado.sacarReais(investidorId, valor);
-                        if (sucesso) {
-                            // Registrar a transação
-                            conectado.registrarTransacao(investidorId, "Saque", "Real", valor);
-
-                            JOptionPane.showMessageDialog(view, "Saque realizado com sucesso!");
-                        } else {
-                            JOptionPane.showMessageDialog(view, "Erro ao realizar saque.");
-                        }
-                    } else {
-                        JOptionPane.showMessageDialog(view, "Erro ao atualizar o saldo localmente.");
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(view, "Saldo insuficiente para saque.");
-                }
+            if (sucesso) {
+                // Atualizar saldo na sessão
+                SessaoInvestidor.getInvestidor().getCarteira().retirarSaldo(valor);
+                JOptionPane.showMessageDialog(view, "Saque realizado com sucesso! Consulte seu saldo para conferir os novos valores!");
             } else {
-                JOptionPane.showMessageDialog(view, "Investidor não encontrado.");
+                JOptionPane.showMessageDialog(view, "Saldo insuficiente");
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(view, "Erro de conexão: " + e.getMessage());
+            JOptionPane.showMessageDialog(view, e.getMessage());
         }
     }
 }

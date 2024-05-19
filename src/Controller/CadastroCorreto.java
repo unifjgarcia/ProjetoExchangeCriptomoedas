@@ -38,8 +38,7 @@ public class CadastroCorreto {
             JOptionPane.showMessageDialog(view, "Senha deve conter exatamente 6 dígitos!");
             return;
         }
-        int investidorId = SessaoInvestidor.getInvestidorId();
-        Investidor investidor = new Investidor(investidorId, nome, idade, cpf, senha, null);
+        Investidor investidor = new Investidor(nome, idade, cpf, senha, null);
         ConexaoBancoDados conectar = new ConexaoBancoDados();
 
         try {

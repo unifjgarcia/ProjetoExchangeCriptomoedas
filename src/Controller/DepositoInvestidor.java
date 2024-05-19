@@ -31,43 +31,30 @@ public class DepositoInvestidor {
         this.moedas = moedas;
     }
 
-    public void depositar() {
-        int investidorId = SessaoInvestidor.getInvestidorId(); // Obter o ID do investidor da sessão
-        String senha = view.getTxtDigitaSenha().getText(); // Obtém a senha da view
-        double valor = Double.parseDouble(view.getTxtValorDeposito().getText()); // Obtém o valor a ser depositado
+    public void depositarReais() {
+        String cpf = SessaoInvestidor.getInvestidor().getCpf();
+        String senha = view.getTxtDigitaSenha().getText();
+        double valor = Double.parseDouble(view.getTxtValorDeposito().getText());
 
-        Investidor investidor = new Investidor(investidorId, null, null, null,senha,null);
+        if (SessaoInvestidor.getInvestidor().getSenha().equals(senha)) {
+            ConexaoBancoDados conectar = new ConexaoBancoDados();
+            try {
+                Connection conexao = conectar.getConnection();
+                InvestidorConectado conectado = new InvestidorConectado(conexao);
+                boolean sucesso = conectado.depositar(cpf, valor);
 
-        ConexaoBancoDados conectar = new ConexaoBancoDados();
-        try {
-            Connection conexao = conectar.getConnection();
-            InvestidorConectado conectado = new InvestidorConectado(conexao);
-            
-            // Validar a senha
-            ResultSet resultado = conectado.carteiraSaldos(investidorId);
-            if (resultado.next()) {
-                String senhaBanco = resultado.getString("senha");
-                if (senha.equals(senhaBanco)) {
-                    // Atualizar o saldo localmente
-                    moedas.adicionarSaldo(valor);
-                    System.out.println("Saldo atualizado localmente: " + moedas.getSaldo()); // Depuração
-
-                    // Persistir a alteração no banco de dados
-                    boolean sucesso = conectado.depositarReais(investidorId, valor);
-                    if (sucesso) {
-                        conectado.registrarTransacao(investidorId, "Depósito", "Real", valor);
-                        JOptionPane.showMessageDialog(view, "Depósito realizado com sucesso!");
-                    } else {
-                        JOptionPane.showMessageDialog(view, "Erro ao realizar depósito.");
-                    }
+                if (sucesso) {
+                    // Atualizar saldo na sessão
+                    SessaoInvestidor.getInvestidor().getCarteira().adicionarSaldo(valor);
+                    JOptionPane.showMessageDialog(view, "Depósito realizado com sucesso! Consulte seu saldo para conferir os novos valores!");
                 } else {
-                    JOptionPane.showMessageDialog(view, "Senha incorreta, tente novamente.");
+                    JOptionPane.showMessageDialog(view, "Erro ao realizar depósito.");
                 }
-            } else {
-                JOptionPane.showMessageDialog(view, "Investidor não encontrado.");
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(view, "Erro de conexão: " + e.getMessage());
             }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(view, "Erro de conexão: " + e.getMessage());
+        } else {
+            JOptionPane.showMessageDialog(view, "Senha incorreta.");
         }
     }
 }
