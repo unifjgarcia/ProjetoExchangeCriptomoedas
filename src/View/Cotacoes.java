@@ -4,6 +4,11 @@
  */
 package View;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
 /**
  *
  * @author Jpsab
@@ -17,6 +22,40 @@ public class Cotacoes extends javax.swing.JFrame {
         initComponents();
     }
 
+    public JButton getBtVoltarMenu() {
+        return btVoltarMenu;
+    }
+
+    public void setBtVoltarMenu(JButton btVoltarMenu) {
+        this.btVoltarMenu = btVoltarMenu;
+    }
+
+    public JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    public void setjScrollPane1(JScrollPane jScrollPane1) {
+        this.jScrollPane1 = jScrollPane1;
+    }
+
+    public JLabel getLblTituloCotacoes() {
+        return lblTituloCotacoes;
+    }
+
+    public void setLblTituloCotacoes(JLabel lblTituloCotacoes) {
+        this.lblTituloCotacoes = lblTituloCotacoes;
+    }
+
+    public JTextArea getTxtMostraCotacoes() {
+        return txtMostraCotacoes;
+    }
+
+    public void setTxtMostraCotacoes(JTextArea txtMostraCotacoes) {
+        this.txtMostraCotacoes = txtMostraCotacoes;
+    }
+
+    
+ 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,22 +65,69 @@ public class Cotacoes extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtMostraCotacoes = new javax.swing.JTextArea();
+        lblTituloCotacoes = new javax.swing.JLabel();
+        btVoltarMenu = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        txtMostraCotacoes.setColumns(20);
+        txtMostraCotacoes.setRows(5);
+        jScrollPane1.setViewportView(txtMostraCotacoes);
+
+        lblTituloCotacoes.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblTituloCotacoes.setText("COTAÇÕES CRIPTOMOEDAS");
+
+        btVoltarMenu.setText("Volta ao Menu");
+        btVoltarMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btVoltarMenuActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 540, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(130, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblTituloCotacoes)
+                        .addGap(129, 129, 129))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(233, 233, 233)
+                .addComponent(btVoltarMenu)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 440, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTituloCotacoes)
+                .addGap(47, 47, 47)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(btVoltarMenu)
+                .addContainerGap(67, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btVoltarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarMenuActionPerformed
+        Menu janelaMenu = new Menu();
+        janelaMenu.setVisible(true);
+    }//GEN-LAST:event_btVoltarMenuActionPerformed
+    
+    public void setCotacoes(String cotacoes) {
+        txtMostraCotacoes.setText(cotacoes);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -78,5 +164,9 @@ public class Cotacoes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btVoltarMenu;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblTituloCotacoes;
+    private javax.swing.JTextArea txtMostraCotacoes;
     // End of variables declaration//GEN-END:variables
 }

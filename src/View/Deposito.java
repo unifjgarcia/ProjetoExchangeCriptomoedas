@@ -22,7 +22,7 @@ public class Deposito extends javax.swing.JFrame {
      */
     public Deposito() {
         initComponents();
-        depositoInvestidor = new DepositoInvestidor(this,null,null);
+        depositoInvestidor = new DepositoInvestidor(this);
     }
 
     public DepositoInvestidor getDepositoInvestidor() {

@@ -20,13 +20,11 @@ import java.sql.SQLException;
  */
 public class SaqueInvestidor {
     private Sacar view;
-    private InvestidorConectado dao;
-    private Moedas moedas;
+    
 
-    public SaqueInvestidor(Sacar view, InvestidorConectado dao, Moedas moedas) {
+    public SaqueInvestidor(Sacar view) {
         this.view = view;
-        this.dao = dao;
-        this.moedas = moedas;
+        
     }
     
     public void sacarReais() {

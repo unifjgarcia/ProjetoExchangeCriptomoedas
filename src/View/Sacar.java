@@ -20,7 +20,7 @@ public class Sacar extends javax.swing.JFrame {
      */
     public Sacar() {
         initComponents();
-        saqueInvestidor = new SaqueInvestidor(this,null,null);
+        saqueInvestidor = new SaqueInvestidor(this);
     }
 
     public JButton getBtSacar() {

@@ -24,7 +24,7 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
-        atualizarCotacoes = new AtualizarCotacoes(null);
+        atualizarCotacoes = new AtualizarCotacoes(this);
         conexao = new ConexaoBancoDados();
     }
 
@@ -376,7 +376,6 @@ public class Menu extends javax.swing.JFrame {
 
     private void btAtualizarCotacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAtualizarCotacaoActionPerformed
         atualizarCotacoes.atualizarCotacao();
-        conexao.inicializarCotacoes(50000.0, 4000.0, 1.0);
     }//GEN-LAST:event_btAtualizarCotacaoActionPerformed
 
     /**

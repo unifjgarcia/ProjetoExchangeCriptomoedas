@@ -22,13 +22,9 @@ import javax.swing.JOptionPane;
  */
 public class DepositoInvestidor {
     private Deposito view;
-    private InvestidorConectado dao;
-    private Moedas moedas;
 
-    public DepositoInvestidor(Deposito view, InvestidorConectado dao, Moedas moedas) {
+    public DepositoInvestidor(Deposito view) {
         this.view = view;
-        this.dao = dao;
-        this.moedas = moedas;
     }
 
     public void depositarReais() {

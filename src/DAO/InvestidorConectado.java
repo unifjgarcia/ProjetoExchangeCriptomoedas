@@ -184,7 +184,6 @@ public class InvestidorConectado {
     }
     
     public void variarCotacao() throws SQLException {
-        // Obter as cotações mais recentes
         String sql = "SELECT bitcoin, ethereum, ripple FROM cotacoes ORDER BY data_hora DESC LIMIT 1";
         try (PreparedStatement stmt = conexao.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
@@ -195,9 +194,9 @@ public class InvestidorConectado {
                 double ripple = rs.getDouble("ripple");
 
                 // Atualizar os valores com a variação
-                bitcoin += bitcoin * (-0.05 + (0.05 + 0.05) * new Random().nextDouble());
-                ethereum += ethereum * (-0.05 + (0.05 + 0.05) * new Random().nextDouble());
-                ripple += ripple * (-0.05 + (0.05 + 0.05) * new Random().nextDouble());
+                bitcoin = aplicarVariacao(bitcoin);
+                ethereum = aplicarVariacao(ethereum);
+                ripple = aplicarVariacao(ripple);
 
                 // Insira os novos valores no banco de dados
                 String insertSql = "INSERT INTO cotacoes (bitcoin, ethereum, ripple) VALUES (?, ?, ?)";
@@ -209,6 +208,18 @@ public class InvestidorConectado {
                 }
             }
         }
+    }
+    
+    private double aplicarVariacao(double valorAtual) {
+        Random random = new Random();
+        double variacao = -0.05 + (0.1 * random.nextDouble()); // Gera uma variação entre -0.05 e 0.05
+        return valorAtual + (valorAtual * variacao);
+    }
+    
+    public ResultSet obterCotacoes() throws SQLException {
+        String sql = "SELECT bitcoin, ethereum, ripple FROM cotacoes ORDER BY data_hora DESC LIMIT 1";
+        PreparedStatement stmt = conexao.prepareStatement(sql);
+        return stmt.executeQuery();
     }
 }
     
