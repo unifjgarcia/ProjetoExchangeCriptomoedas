@@ -94,6 +94,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Confirmar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btConfirmarSenhaActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

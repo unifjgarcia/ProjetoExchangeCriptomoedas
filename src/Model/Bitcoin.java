@@ -13,12 +13,14 @@ public class Bitcoin extends Moedas implements Tarifacao{
         super("Bitcoin", saldo);
     }
     
+    @Override
     public double taxaCompra(double comprarCripto){
         double taxa = comprarCripto * 0.02; 
         this.saldo -= taxa;
         return taxa;
     }
     
+    @Override
     public double taxaVenda(double venderCripto){
         double taxa = venderCripto * 0.03;
         this.saldo -= taxa;

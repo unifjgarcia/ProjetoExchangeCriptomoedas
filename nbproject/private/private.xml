@@ -7,13 +7,17 @@
             <file>file:/C:/Users/Jpsab/Downloads/ProjetoExchangeCripto/src/View/Deposito.java</file>
             <file>file:/C:/Users/Jpsab/Downloads/ProjetoExchangeCripto/src/Controller/AtualizarCotacoes.java</file>
             <file>file:/C:/Users/Jpsab/Downloads/ProjetoExchangeCripto/src/Controller/SaqueInvestidor.java</file>
-            <file>file:/C:/Users/Jpsab/Downloads/ProjetoExchangeCripto/src/View/Sacar.java</file>
             <file>file:/C:/Users/Jpsab/Downloads/ProjetoExchangeCripto/src/DAO/ConexaoBancoDados.java</file>
-            <file>file:/C:/Users/Jpsab/Downloads/ProjetoExchangeCripto/src/DAO/InvestidorConectado.java</file>
-            <file>file:/C:/Users/Jpsab/Downloads/ProjetoExchangeCripto/src/Controller/LoginSucesso.java</file>
             <file>file:/C:/Users/Jpsab/Downloads/ProjetoExchangeCripto/src/Controller/SaldoInvestidor.java</file>
             <file>file:/C:/Users/Jpsab/Downloads/ProjetoExchangeCripto/src/Controller/DepositoInvestidor.java</file>
+            <file>file:/C:/Users/Jpsab/Downloads/ProjetoExchangeCripto/src/Controller/CadastroCorreto.java</file>
+            <file>file:/C:/Users/Jpsab/Downloads/ProjetoExchangeCripto/src/projetoexchangecripto/ProjetoExchangeCripto.java</file>
+            <file>file:/C:/Users/Jpsab/Downloads/ProjetoExchangeCripto/src/View/Cotacoes.java</file>
+            <file>file:/C:/Users/Jpsab/Downloads/ProjetoExchangeCripto/src/View/Sacar.java</file>
+            <file>file:/C:/Users/Jpsab/Downloads/ProjetoExchangeCripto/src/DAO/InvestidorConectado.java</file>
+            <file>file:/C:/Users/Jpsab/Downloads/ProjetoExchangeCripto/src/Controller/LoginSucesso.java</file>
             <file>file:/C:/Users/Jpsab/Downloads/ProjetoExchangeCripto/src/View/Saldo.java</file>
+            <file>file:/C:/Users/Jpsab/Downloads/ProjetoExchangeCripto/src/View/Login.java</file>
         </group>
     </open-files>
 </project-private>

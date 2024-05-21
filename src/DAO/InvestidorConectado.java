@@ -221,6 +221,89 @@ public class InvestidorConectado {
         PreparedStatement stmt = conexao.prepareStatement(sql);
         return stmt.executeQuery();
     }
+    
+    public double obterCotacaoCriptomoeda(String criptomoeda) throws SQLException {
+        String sql = "SELECT " + criptomoeda.toLowerCase() + " FROM cotacoes ORDER BY data_hora DESC LIMIT 1";
+        PreparedStatement stmt = conexao.prepareStatement(sql);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            return rs.getDouble(criptomoeda.toLowerCase());
+        }
+        return 0;
+    }
+    
+    public boolean verificarSenha(String cpf, String senha) throws SQLException {
+        String sql = "SELECT senha FROM investidor WHERE cpf = ?";
+        PreparedStatement stmt = conexao.prepareStatement(sql);
+        stmt.setString(1, cpf);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            return rs.getString("senha").equals(senha);
+        }
+        return false;
+    }
+    
+    public double obterSaldoReais(String cpf) throws SQLException {
+        String sql = "SELECT saldo_real FROM saldos WHERE cpf = ?";
+        PreparedStatement stmt = conexao.prepareStatement(sql);
+        stmt.setString(1, cpf);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            return rs.getDouble("saldo_real");
+        }
+        return 0;
+    }
+    
+    public double obterSaldoCriptomoeda(String cpf, String criptomoeda) throws SQLException {
+        String sql = "SELECT saldo_" + criptomoeda.toLowerCase() + " FROM saldos WHERE cpf = ?";
+        PreparedStatement stmt = conexao.prepareStatement(sql);
+        stmt.setString(1, cpf);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            return rs.getDouble("saldo_" + criptomoeda.toLowerCase());
+        }
+        return 0;
+    }
+    
+    public void atualizarSaldoReais(String cpf, double novoSaldo) throws SQLException {
+        String sql = "UPDATE saldos SET saldo_real = ? WHERE cpf = ?";
+        PreparedStatement stmt = conexao.prepareStatement(sql);
+        stmt.setDouble(1, novoSaldo);
+        stmt.setString(2, cpf);
+        stmt.executeUpdate();
+    }
+    
+    public void atualizarSaldo(String cpf, String criptomoeda, double novoSaldo) throws SQLException {
+        String sql = "UPDATE saldos SET saldo_" + criptomoeda.toLowerCase() + " = ? WHERE cpf = ?";
+        PreparedStatement stmt = conexao.prepareStatement(sql);
+        stmt.setDouble(1, novoSaldo);
+        stmt.setString(2, cpf);
+        stmt.executeUpdate();
+    }
+    
+    public double aplicarTaxaCompra(String criptomoeda, double quantidade) throws SQLException {
+        double taxa = 0;
+        if (criptomoeda.equalsIgnoreCase("Bitcoin")) {
+            taxa = quantidade * 0.02;
+        } else if (criptomoeda.equalsIgnoreCase("Ethereum")) {
+            taxa = quantidade * 0.01;
+        } else if (criptomoeda.equalsIgnoreCase("Ripple")) {
+            taxa = quantidade * 0.01;
+        }
+        return taxa;
+    }
+    
+    public double aplicarTaxaVenda(String criptomoeda, double quantidade) throws SQLException {
+        double taxa = 0;
+        if (criptomoeda.equalsIgnoreCase("Bitcoin")) {
+            taxa = quantidade * 0.03;
+        } else if (criptomoeda.equalsIgnoreCase("Ethereum")) {
+            taxa = quantidade * 0.02;
+        } else if (criptomoeda.equalsIgnoreCase("Ripple")) {
+            taxa = quantidade * 0.01;
+        }
+        return taxa;
+    }
 }
     
 

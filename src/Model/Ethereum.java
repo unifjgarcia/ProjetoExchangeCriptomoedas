@@ -13,12 +13,14 @@ public class Ethereum extends Moedas implements Tarifacao{
         super("Ethereum", saldo);
     }
     
+    @Override
     public double taxaCompra(double comprarCripto){
         double taxa = comprarCripto * 0.01; 
         this.saldo -= taxa;
         return taxa;
     }
     
+    @Override
     public double taxaVenda(double venderCripto){
         double taxa = venderCripto * 0.02;
         this.saldo -= taxa;

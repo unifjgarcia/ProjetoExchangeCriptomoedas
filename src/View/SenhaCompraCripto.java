@@ -4,6 +4,11 @@
  */
 package View;
 
+import Controller.VerificarSenhaCompra;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Jpsab
@@ -15,8 +20,43 @@ public class SenhaCompraCripto extends javax.swing.JFrame {
      */
     public SenhaCompraCripto() {
         initComponents();
+        verificar = new VerificarSenhaCompra(this);
     }
 
+    public JButton getBtConfirmarSenha() {
+        return btConfirmarSenha;
+    }
+
+    public void setBtConfirmarSenha(JButton btConfirmarSenha) {
+        this.btConfirmarSenha = btConfirmarSenha;
+    }
+
+    public JLabel getLblConfirmaSenha() {
+        return lblConfirmaSenha;
+    }
+
+    public void setLblConfirmaSenha(JLabel lblConfirmaSenha) {
+        this.lblConfirmaSenha = lblConfirmaSenha;
+    }
+
+    public JLabel getLblDigitaSenha() {
+        return lblDigitaSenha;
+    }
+
+    public void setLblDigitaSenha(JLabel lblDigitaSenha) {
+        this.lblDigitaSenha = lblDigitaSenha;
+    }
+
+    public JTextField getTxtConfirmaSenha() {
+        return txtConfirmaSenha;
+    }
+
+    public void setTxtConfirmaSenha(JTextField txtConfirmaSenha) {
+        this.txtConfirmaSenha = txtConfirmaSenha;
+    }
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,6 +81,11 @@ public class SenhaCompraCripto extends javax.swing.JFrame {
 
         btConfirmarSenha.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btConfirmarSenha.setText("Confirmar");
+        btConfirmarSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btConfirmarSenhaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -77,6 +122,12 @@ public class SenhaCompraCripto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btConfirmarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConfirmarSenhaActionPerformed
+        verificar.verificaSenha();
+    }//GEN-LAST:event_btConfirmarSenhaActionPerformed
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -111,7 +162,9 @@ public class SenhaCompraCripto extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    private VerificarSenhaCompra verificar;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btConfirmarSenha;
     private javax.swing.JLabel lblConfirmaSenha;

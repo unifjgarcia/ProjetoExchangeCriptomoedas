@@ -13,12 +13,14 @@ public class Ripple extends Moedas implements Tarifacao{
         super("Ripple", saldo);
     }
     
+    @Override
     public double taxaCompra(double comprarCripto){
         double taxa = comprarCripto * 0.01; 
         this.saldo -= taxa;
         return taxa;
     }
     
+    @Override
     public double taxaVenda(double venderCripto){
         double taxa = venderCripto * 0.01;
         this.saldo -= taxa;
