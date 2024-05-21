@@ -20,4 +20,8 @@ public class SessaoInvestidor {
     public static void setInvestidor(Investidor investidor) {
         SessaoInvestidor.investidor = investidor;
     }
+    
+    public static void encerrarSessao() {
+        investidor = null;
+    }
 }

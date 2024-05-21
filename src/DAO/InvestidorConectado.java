@@ -304,6 +304,24 @@ public class InvestidorConectado {
         }
         return taxa;
     }
+    
+    public ResultSet obterExtrato(String cpf) throws SQLException {
+        String sql = "SELECT data_hora, tipo_transacao, moeda, valor FROM transacoes WHERE cpf = ? ORDER BY data_hora DESC";
+        PreparedStatement stmt = conexao.prepareStatement(sql);
+        stmt.setString(1, cpf);
+        return stmt.executeQuery();
+    }
+    
+    public String obterNomeInvestidor(String cpf) throws SQLException {
+        String sql = "SELECT nome FROM investidor WHERE cpf = ?";
+        PreparedStatement stmt = conexao.prepareStatement(sql);
+        stmt.setString(1, cpf);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            return rs.getString("nome");
+        }
+        return null;
+    }
 }
     
 

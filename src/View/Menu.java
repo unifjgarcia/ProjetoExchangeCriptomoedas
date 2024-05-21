@@ -5,6 +5,7 @@
 package View;
 
 import Controller.AtualizarCotacoes;
+import Controller.Sair;
 import Controller.SaldoInvestidor;
 import DAO.ConexaoBancoDados;
 import DAO.InvestidorConectado;
@@ -26,6 +27,7 @@ public class Menu extends javax.swing.JFrame {
         initComponents();
         atualizarCotacoes = new AtualizarCotacoes(this);
         conexao = new ConexaoBancoDados();
+        sair = new Sair(this);
     }
 
     public JButton getBtAtualizarCotacao() {
@@ -253,6 +255,11 @@ public class Menu extends javax.swing.JFrame {
         lbl8.setText("8.");
 
         btSair.setText("Sair");
+        btSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSairActionPerformed(evt);
+            }
+        });
 
         lblMenu.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblMenu.setText("Bem-Vindo ao Menu do Investidor");
@@ -346,7 +353,8 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btConsultarExtratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConsultarExtratoActionPerformed
-        // TODO add your handling code here:
+        SenhaExtrato janelaSenha = new SenhaExtrato();
+        janelaSenha.setVisible(true);
     }//GEN-LAST:event_btConsultarExtratoActionPerformed
 
     private void btComprarCriptoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComprarCriptoActionPerformed
@@ -377,6 +385,10 @@ public class Menu extends javax.swing.JFrame {
     private void btAtualizarCotacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAtualizarCotacaoActionPerformed
         atualizarCotacoes.atualizarCotacao();
     }//GEN-LAST:event_btAtualizarCotacaoActionPerformed
+
+    private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
+        sair.sairMenu();
+    }//GEN-LAST:event_btSairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -415,6 +427,7 @@ public class Menu extends javax.swing.JFrame {
     
     private AtualizarCotacoes atualizarCotacoes;
     private ConexaoBancoDados conexao;
+    private Sair sair;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAtualizarCotacao;
