@@ -13,8 +13,13 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
+ *A classe CotacoesVendeCripto é a janela que o investidor pode vender a 
+ * criptomoeda que deseja. Ela possui um metodo que seta os valores em uma area
+ * de texto, possui um objeto da classe VenderCriptomoedas, recebendo o metodo
+ * que faz a venda das criptomoedas.
  *
- * @author Jpsab
+ * @author João Pedro Sabino Garcia
+ * @version 1.0
  */
 public class CotacoesVendeCripto extends javax.swing.JFrame {
 

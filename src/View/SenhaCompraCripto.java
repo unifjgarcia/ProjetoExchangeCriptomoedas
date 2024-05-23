@@ -10,8 +10,12 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 /**
+ * A classe SenhaCompraCripto é a janela que pede a confirmação da senha do 
+ * investidor para ele comprar criptomoedas. Ela possui um objeto da classe
+ * VerificarSenhaCompra, recebendo o metodo que verifica se a senha está correta.
  *
- * @author Jpsab
+ * @author João Pedro Sabino Garcia 
+ * @version 1.0
  */
 public class SenhaCompraCripto extends javax.swing.JFrame {
 

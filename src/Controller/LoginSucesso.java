@@ -16,16 +16,31 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
+ * A classe LoginSucesso é responsável por gerenciar o processo de login do investidor.
  *
- * @author Jpsab
+ * @author João Pedro Sabino Garcia
+ * @version 1.0
  */
 public class LoginSucesso {
     private Login view;
-
+    
+    /**
+     * Construtor da classe LoginSucesso.
+     * 
+     * @param view A referência à janela de Login.
+     */
+    
     public LoginSucesso(Login view) {
         this.view = view;
     }
-
+    
+    /**
+     * Realiza o login do investidor. Verifica as credenciais (CPF e senha) fornecidas,
+     * e se forem válidas, configura a sessão do investidor com as informações recuperadas
+     * do banco de dados, incluindo o saldo das criptomoedas. Em seguida, abre o menu principal
+     * da aplicação. Em caso de erro, exibe mensagens apropriadas.
+     */
+    
     public void LoginInvestidor(){
         Investidor investidor = new Investidor(null, null, view.getTxtCPF().getText(), view.getTxtSenha().getText(), null);
         ConexaoBancoDados conectar = new ConexaoBancoDados();

@@ -13,15 +13,31 @@ import javax.swing.JOptionPane;
 
 
 /**
+ * A classe CadastroCorreto é responsável pelo processo de cadastro de novos investidores.
+ 
  *
- * @author Jpsab
+ * @author João Pedro Sabino Garcia
+ * @version 1.0
  */
 public class CadastroCorreto {
     private Cadastro view;
-
+    
+    /**
+     * Construtor da classe CadastroCorreto.
+     * 
+     * @param view A referência à janela de Cadastro.
+     */
+    
     public CadastroCorreto(Cadastro view) {
         this.view = view;
     }
+    
+    /**
+    * Ela valida os dados de entrada fornecidos pelo usuário, como CPF e senha, e então 
+    * salva o novo investidor no banco de dados, juntamente com a criação de uma carteira.
+    * Se o cadastro for bem-sucedido, uma mensagem de sucesso é exibida; caso contrário, 
+    * uma mensagem de erro é exibida.
+    */
     
     public void salvarInvestidor() {
         String nome = view.getTxtNomeCadastro().getText();

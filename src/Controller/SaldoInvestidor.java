@@ -17,16 +17,30 @@ import java.sql.ResultSet;
 
 
 /**
+ * A classe SaldoInvestidor é responsável por gerenciar a consulta de saldos do investidor.
  *
- * @author Jpsab
+ * @author João Pedro Sabino Garcia
+ * @version 1.0
  */
 public class SaldoInvestidor {
     private Saldo view;
-
+    
+    /**
+     * Construtor da classe SaldoInvestidor.
+     * 
+     * @param view A referência à janela de saldo.
+     */
+    
     public SaldoInvestidor(Saldo view) {
         this.view = view;
     }
-
+    
+    /**
+     * Realiza a consulta de saldos do investidor. Verifica a senha fornecida,
+     * e se estiver correta, obtém os saldos das criptomoedas e exibe na interface
+     * de usuário. Em caso de erro ou senha incorreta, exibe mensagens apropriadas.
+     */
+    
     public void ConsultarSaldo() {
         String senha = view.getTxtSenhaSaldo().getText(); // Obtém a senha da view
 

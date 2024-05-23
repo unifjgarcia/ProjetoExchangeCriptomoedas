@@ -10,8 +10,12 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 /**
+ * A classe Sacar é a janela que permite com que o investidor saque reais da sua
+ * conta do banco. Ela possui um objeto da classe SaqueInvestidor, recebendo o 
+ * metodo que faz o saque de reais da conta do investidor.
  *
- * @author Jpsab
+ * @author João Pedro Sabino Garcia
+ * @version 1.0
  */
 public class Sacar extends javax.swing.JFrame {
 

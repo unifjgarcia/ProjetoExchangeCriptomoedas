@@ -14,15 +14,30 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
+ * A classe VerificarSenhaCompra é responsável por verificar a senha do investidor
+ * antes de permitir a compra de criptomoedas.
  *
- * @author Jpsab
+ * @author João Pedro Sabino Garcia
+ * @version 1.0
  */
 public class VerificarSenhaCompra {
     private SenhaCompraCripto view;
-
+    
+    /**
+     * Construtor da classe VerificarSenhaCompra.
+     * 
+     * @param view A referência à janela de confirmação de senha para compra de criptomoedas.
+     */
+    
     public VerificarSenhaCompra(SenhaCompraCripto view) {
         this.view = view;
     }
+    
+    /**
+     * Verifica a senha do investidor. Se a senha estiver correta, obtém as cotações
+     * atualizadas das criptomoedas, abre a janela de compra de criptomoedas e exibe
+     * as cotações. Caso contrário, exibe uma mensagem de erro.
+     */
     
     public void verificaSenha() {
         String senha = view.getTxtConfirmaSenha().getText();

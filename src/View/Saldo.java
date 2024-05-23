@@ -17,8 +17,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 /**
- *
- * @author Jpsab
+ * A classe Saldo é a janela que mostra todos os saldos de todas as moedas ao 
+ * investidor. Ela possui um objeto da classe SaldoInvestidor, recebendo o 
+ * metodo que mostra o saldo em uma area de texto.
+ * 
+ * @author João Pedro Sabino Garcia
+ * @version 1.0
  */
 public class Saldo extends javax.swing.JFrame {
 

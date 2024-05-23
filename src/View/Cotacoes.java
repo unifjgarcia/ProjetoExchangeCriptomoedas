@@ -10,8 +10,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 /**
+ * A classe Cotacoes é a janela que mostra as cotacoes atualizadas de cada 
+ * criptomoeda para o investidor. Ela possui um método que seta os valores em 
+ * uma area de texto.
  *
- * @author Jpsab
+ * @author João Pedro Sabino Garcia
+ * @version 1.0
  */
 public class Cotacoes extends javax.swing.JFrame {
 

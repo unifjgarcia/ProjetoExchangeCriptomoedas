@@ -11,8 +11,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
+ * A classe Cadastro é a janela de Cadastro do investidor, ela possui um objeto 
+ * da classe CadastroCorreto, recebendo o método que faz o cadastro do investidor.
+ * Além disso, possui também um botão que abre a janela de Login novamente.
  *
- * @author Jpsab
+ * @author João Pedro Sabino Garcia
+ * @version 1.0
  */
 public class Cadastro extends javax.swing.JFrame {
 

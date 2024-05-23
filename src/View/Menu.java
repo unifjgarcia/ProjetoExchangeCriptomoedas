@@ -15,8 +15,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author Jpsab
+ * A classe Menu é a janela que mostra todas as opções que o investidor pode 
+ * fazer no banco.
+ * 
+ * @author João Pedro Sabino Garcia
+ * @version 1.0
  */
 public class Menu extends javax.swing.JFrame {
 

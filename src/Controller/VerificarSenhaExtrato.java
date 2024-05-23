@@ -14,15 +14,30 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- *
- * @author Jpsab
+ * A classe VerificarSenhaExtrato é responsável por verificar a senha do investidor
+ * antes de permitir o acesso ao extrato.
+ * @author João Pedro Sabino Garcia
+ * @version 1.0
  */
+
+/**
+     * Construtor da classe VerificarSenhaExtrato.
+     * 
+     * @param view A referência à janela de confirmação de senha para acesso ao extrato.
+     */
 public class VerificarSenhaExtrato {
     private SenhaExtrato view;
 
     public VerificarSenhaExtrato(SenhaExtrato view) {
         this.view = view;
     }
+    
+    
+    /**
+     * Verifica a senha do investidor. Se a senha estiver correta, obtém o nome e CPF 
+     * do investidor, e então obtém e exibe o extrato do investidor na janela de extrato.
+     * Caso contrário, exibe uma mensagem de erro.
+     */
     
     public void extrato(){
         String senha = view.getTxtConfirmaSenha().getText();

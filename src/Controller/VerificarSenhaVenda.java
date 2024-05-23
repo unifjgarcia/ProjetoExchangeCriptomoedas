@@ -15,15 +15,31 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
+ * A classe VerificarSenhaVenda é responsável por verificar a senha do investidor
+ * antes de permitir a venda de criptomoedas.
  *
- * @author Jpsab
+ * @author João Pedro Sabino Garcia
+ * @version 1.0
  */
 public class VerificarSenhaVenda {
     private SenhaVendeCripto view;
-
+    
+    
+    /**
+     * Construtor da classe VerificarSenhaVenda.
+     * 
+     * @param view A referência à janela de confirmação de senha para venda de criptomoedas.
+     */
+    
     public VerificarSenhaVenda(SenhaVendeCripto view) {
         this.view = view;
     }
+    
+    /**
+     * Verifica a senha do investidor. Se a senha estiver correta, obtém as cotações
+     * atualizadas das criptomoedas, abre a janela de venda de criptomoedas e exibe
+     * as cotações. Caso contrário, exibe uma mensagem de erro.
+     */
     
     public void verificaSenhaVenda() {
         String senha = view.getTxtConfirmaSenha().getText();

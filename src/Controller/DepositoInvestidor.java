@@ -17,16 +17,31 @@ import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
 /**
+ *  * A classe DepositoInvestidor é responsável por gerenciar o processo de depósito de reais 
+ * na conta do investidor.
  *
- * @author Jpsab
+ * @author João Pedro Sabino Garcia
+ * @version 1.0
  */
 public class DepositoInvestidor {
     private Deposito view;
-
+    
+    /**
+     * Construtor da classe DepositoInvestidor.
+     * 
+     * @param view A referência à janela de Deposito.
+     */
+    
     public DepositoInvestidor(Deposito view) {
         this.view = view;
     }
-
+    
+    /**
+     * Realiza o depósito de reais na conta do investidor. Verifica a senha fornecida pelo 
+     * investidor, e se estiver correta, atualiza o saldo na carteira do investidor e no banco 
+     * de dados, registrando o depósito.
+     */
+    
     public void depositarReais() {
         String cpf = SessaoInvestidor.getInvestidor().getCpf();
         String senha = view.getTxtDigitaSenha().getText();

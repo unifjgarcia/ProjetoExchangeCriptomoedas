@@ -14,8 +14,13 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
+ * A classe CotacoesCompraCripto é a janela que o investidor pode comprar a 
+ * criptomoeda que deseja. Ela possui um metodo que seta os valores em uma area
+ * de texto, possui um objeto da classe ComprarCriptomoedas, recebendo o metodo
+ * que faz a compra das criptomoedas.
  *
- * @author Jpsab
+ * @author João Pedro Sabino Garcia
+ * @version 1.0
  */
 public class CotacoesCompraCripto extends javax.swing.JFrame {
 
@@ -158,7 +163,7 @@ public class CotacoesCompraCripto extends javax.swing.JFrame {
         lblEscolha.setText("Escolha qual Criptomoeda deseja comprar:");
 
         lblDigiteValor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblDigiteValor.setText("Digite o valor que deseja comprar:");
+        lblDigiteValor.setText("Digite quanto deseja comprar:");
 
         txtValorCompraCripto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,7 +184,7 @@ public class CotacoesCompraCripto extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(67, Short.MAX_VALUE)
+                .addContainerGap(100, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblEscolha)

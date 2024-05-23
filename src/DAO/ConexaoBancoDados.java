@@ -7,8 +7,18 @@ import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 /**
+ * A classe ConexaoBancoDados é responsável por gerenciar a conexão com o banco de dados PostgreSQL
+ * e inicializar as cotações das criptomoedas caso ainda não estejam inseridas na tabela.
  *
- * @author Jpsab
+ * @author João Pedro Sabino Garcia
+ * @version 1.0
+ */
+
+/**
+     * Estabelece e retorna uma conexão com o banco de dados PostgreSQL.
+     *
+     * @return A conexão com o banco de dados.
+     * @throws SQLException Se ocorrer um erro ao estabelecer a conexão.
  */
 public class ConexaoBancoDados {
     public Connection getConnection() throws SQLException{
@@ -17,6 +27,15 @@ public class ConexaoBancoDados {
         "postgres", "fei");
         return conexaoBancoDados;
     }
+    
+    
+    /**
+     * Inicializa as cotações das criptomoedas no banco de dados, caso a tabela esteja vazia.
+     *
+     * @param bitcoin O valor inicial do Bitcoin.
+     * @param ethereum O valor inicial do Ethereum.
+     * @param ripple O valor inicial do Ripple.
+     */
     
     public void inicializarCotacoes(double bitcoin, double ethereum, double ripple) {
         String sqlVerificar = "SELECT COUNT(*) FROM cotacoes";

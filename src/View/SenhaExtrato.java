@@ -10,8 +10,12 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 /**
+ * A classe SenhaExtrato é a janela que pede a confirmação da senha do 
+ * investidor para ele possa consultar seu saldo. Ela possui um objeto da classe
+ * VerificarSenhaExtrato, recebendo o metodo que verifica se a senha está correta.
  *
- * @author Jpsab
+ * @author João Pedro Sabino Garcia
+ * @version 1.0
  */
 public class SenhaExtrato extends javax.swing.JFrame {
 

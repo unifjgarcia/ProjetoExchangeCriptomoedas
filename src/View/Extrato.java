@@ -10,8 +10,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 /**
+ * A classe Extrato é a janela que mostra o extrato de todas as transações 
+ * feitas pelo investidor em uma area de texto.
  *
- * @author Jpsab
+ * @author João Pedro Sabino Garcia
+ * @version 1.0
  */
 public class Extrato extends javax.swing.JFrame {
 

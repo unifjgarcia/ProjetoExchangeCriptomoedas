@@ -5,13 +5,33 @@
 package Model;
 
 /**
+ * A classe Bitcoin representa uma criptomoeda específica (Bitcoin) e implementa 
+ * a interface Tarifacao para aplicar taxas de compra e venda.
  *
- * @author Jpsab
+ * @author João Pedro Sabino Garcia
+ * @version 1.0
+ * @see Moedas
+ * @see Tarifacao
  */
+    
+/**
+     * Construtor da classe Bitcoin.
+     * 
+     * @param saldo O saldo inicial de Bitcoin.
+     */
+
 public class Bitcoin extends Moedas implements Tarifacao{
     public Bitcoin(double saldo) {
         super("Bitcoin", saldo);
     }
+    
+    /**
+     * Aplica a taxa de compra para a quantidade especificada de Bitcoin.
+     * A taxa de compra é de 2% do valor da compra.
+     * 
+     * @param comprarCripto A quantidade de Bitcoin a ser comprada.
+     * @return O valor da taxa de compra.
+     */
     
     @Override
     public double taxaCompra(double comprarCripto){
@@ -19,6 +39,14 @@ public class Bitcoin extends Moedas implements Tarifacao{
         this.saldo -= taxa;
         return taxa;
     }
+    
+    /**
+     * Aplica a taxa de venda para a quantidade especificada de Bitcoin.
+     * A taxa de venda é de 3% do valor da venda.
+     * 
+     * @param venderCripto A quantidade de Bitcoin a ser vendida.
+     * @return O valor da taxa de venda.
+     */
     
     @Override
     public double taxaVenda(double venderCripto){

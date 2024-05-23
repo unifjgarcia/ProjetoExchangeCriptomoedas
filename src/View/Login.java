@@ -14,8 +14,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
+ * A classe Login é a janela inicial do programa, que permite com que o 
+ * investidor acesse o programa através do seu CPF e Senha. Ela possui um objeto
+ * da classe LoginSucesso, recebendo o metodo que faz o login do investidor.
  *
- * @author Jpsab
+ * @author João Pedro Sabino Garcia
+ * @version 1.0
  */
 public class Login extends javax.swing.JFrame {
 

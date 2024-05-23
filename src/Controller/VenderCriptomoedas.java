@@ -12,15 +12,31 @@ import java.sql.SQLException;
 import java.sql.Connection;
 
 /**
+ * A classe VenderCriptomoedas é responsável por gerenciar o processo de venda de criptomoedas 
+ * pelos investidores.
  *
- * @author Jpsab
+ * @author João Pedro Sabino Garcia
+ * @version 1.0
  */
 public class VenderCriptomoedas {
     private CotacoesVendeCripto view;
-
+    
+    /**
+     * Construtor da classe VenderCriptomoedas.
+     * 
+     * @param view A referência à janela de venda de criptomoedas.
+     */
+    
     public VenderCriptomoedas(CotacoesVendeCripto view) {
         this.view = view;
     }
+    
+    /**
+     * Realiza a venda de criptomoedas. Verifica o saldo disponível da criptomoeda,
+     * aplica a taxa de venda, atualiza os saldos do investidor no banco de dados e 
+     * na sessão, e registra a transação. Em caso de sucesso, exibe uma mensagem de 
+     * confirmação; caso contrário, exibe uma mensagem de erro.
+     */
     
     public void vendeCripto(){
         String cpf = SessaoInvestidor.getInvestidor().getCpf();

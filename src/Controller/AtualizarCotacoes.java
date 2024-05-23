@@ -16,15 +16,30 @@ import java.sql.ResultSet;
 
 
 /**
+ * A classe AtualizarCotacoes é responsável por atualizar as cotações das 
+ * criptomoedas no sistema.  
  *
- * @author Jpsab
+ * @author João Pedro Sabino Garcia
+ * @version 1.0
  */
 public class AtualizarCotacoes {
     private Menu view;
-
+    
+    /**
+     * Construtor da classe AtualizarCotacoes.
+     * 
+     * @param view A referência à janela de Menu.
+     */
+    
     public AtualizarCotacoes(Menu view) {
         this.view = view;
     }
+    
+    /**  
+    * Ela se conecta ao banco de dados, aplica a variação
+    * nas cotações das criptomoedas e exibe uma mensagem de sucesso. Em seguida, 
+    * recupera as cotações atualizadas e as exibe em uma nova janela de cotações.
+   */
     
     public void atualizarCotacao() {
         ConexaoBancoDados conectar = new ConexaoBancoDados();

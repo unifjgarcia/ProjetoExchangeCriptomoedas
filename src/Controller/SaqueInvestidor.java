@@ -15,17 +15,32 @@ import javax.swing.JOptionPane;
 import java.sql.SQLException;
 
 /**
+ * A classe SaqueInvestidor é responsável por gerenciar o processo de saque de reais 
+ * da conta do investidor.
  *
- * @author Jpsab
+ * @author João Pedro Sabino Garcia
+ * @version 1.0
  */
 public class SaqueInvestidor {
     private Sacar view;
     
-
+    /**
+     * Construtor da classe SaqueInvestidor.
+     * 
+     * @param view A referência à janela de saque.
+     */
+    
     public SaqueInvestidor(Sacar view) {
         this.view = view;
         
     }
+    
+    /**
+     * Realiza o saque de reais da conta do investidor. Verifica se o investidor possui 
+     * saldo suficiente, realiza o saque, atualiza o saldo na carteira do investidor e 
+     * no banco de dados, e registra a transação. Em caso de sucesso, exibe uma mensagem 
+     * de confirmação; caso contrário, exibe uma mensagem de erro.
+     */
     
     public void sacarReais() {
         double valor = Double.parseDouble(view.getTxtValorSaque().getText());

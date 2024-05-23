@@ -12,8 +12,12 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 /**
+ * A classe Deposito é a janela que possibilita que o investidor possa depositar
+ * reais em sua conta. Ela possui um objeto da classe DepositoInvestidor, 
+ * recebendo o metodo que faz o depósito no saldo do investidor.
  *
- * @author Jpsab
+ * @author João Pedro Sabino Garcia
+ * @version 1.0
  */
 public class Deposito extends javax.swing.JFrame {
 
